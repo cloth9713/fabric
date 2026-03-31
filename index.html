@@ -8,22 +8,44 @@
 <style>
 
 body{
-    font-family: Arial, sans-serif;
     margin:0;
-    background:#f4f4f4;
+    font-family: "Segoe UI", sans-serif;
+    background:#f8f8f8;
 }
 
+/* ===== Header ===== */
 header{
-    background:#333;
+    position:relative;
+    height:300px;
+    background:url('banner.jpg') center/cover no-repeat;
     color:white;
-    text-align:center;
-    padding:25px;
 }
 
+header .overlay{
+    background:rgba(0,0,0,0.5);
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+header h1{
+    font-size:40px;
+    margin:0;
+}
+
+header p{
+    margin-top:10px;
+}
+
+/* ===== nav ===== */
 nav{
-    background:#555;
-    text-align:center;
+    background:#222;
     padding:12px;
+    text-align:center;
+    position:sticky;
+    top:0;
 }
 
 nav a{
@@ -33,27 +55,73 @@ nav a{
     font-weight:bold;
 }
 
+/* ===== section ===== */
 .container{
-    padding:30px;
+    padding:40px 20px;
 }
 
 .section{
-    margin-bottom:50px;
+    margin-bottom:60px;
 }
 
-.images{
+.section h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+/* ===== 卡片圖片 ===== */
+.grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:15px;
+    gap:20px;
 }
 
-.images img{
+.card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
     width:100%;
-    border-radius:8px;
+    height:220px;
+    object-fit:cover;
+    transition:0.3s;
 }
 
+.card:hover img{
+    transform:scale(1.1);
+}
+
+/* ===== 圖片放大 ===== */
+.modal{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+}
+
+.modal img{
+    display:block;
+    max-width:90%;
+    max-height:90%;
+    margin:5% auto;
+}
+
+/* ===== footer ===== */
 footer{
-    background:#333;
+    background:#222;
     color:white;
     text-align:center;
     padding:20px;
@@ -64,99 +132,113 @@ footer{
 
 <body>
 
+<!-- Banner -->
 <header>
+<div class="overlay">
 <h1>布料供應商</h1>
-<p>各式布料批發 | 素面布 | 格子布 | 機能布</p>
+<p>高品質布料｜批發零售｜各式機能布</p>
+</div>
 </header>
 
+<!-- 導覽 -->
 <nav>
-<a href="#fabric1">1 素面布</a>
-<a href="#fabric2">2 格子布</a>
-<a href="#fabric3">3 條紋布</a>
-<a href="#fabric4">4 防潑水機能布</a>
-<a href="#fabric5">5 包包布</a>
-<a href="#fabric6">6 聚酯羊毛布</a>
+<a href="#f1">素面布</a>
+<a href="#f2">格子布</a>
+<a href="#f3">條紋布</a>
+<a href="#f4">機能布</a>
+<a href="#f5">包包布</a>
+<a href="#f6">羊毛布</a>
 </nav>
 
 <div class="container">
 
 <!-- 1 -->
-<div class="section" id="fabric1">
+<div class="section" id="f1">
 <h2>1. 素面布</h2>
-
-<div class="images">
-<img src="plain1.jpg">
-<img src="plain2.jpg">
+<div class="grid">
+<div class="card"><img src="plain1.jpg" onclick="openImg(this)"></div>
+<div class="card"><img src="plain2.jpg" onclick="openImg(this)"></div>
 </div>
 </div>
 
 <!-- 2 -->
-<div class="section" id="fabric2">
+<div class="section" id="f2">
 <h2>2. 格子布</h2>
-
-<div class="images">
-<img src="check1.jpg">
-<img src="check2.jpg">
-<img src="check3.jpg">
-<img src="check4.jpg">
-<img src="check5.jpg">
-<img src="check6.jpg">
-<img src="check7.jpg">
-<img src="check8.jpg">
-<img src="check9.jpg">
-<img src="check10.jpg">
+<div class="grid">
+<img src="check1.jpg" onclick="openImg(this)">
+<img src="check2.jpg" onclick="openImg(this)">
+<img src="check3.jpg" onclick="openImg(this)">
+<img src="check4.jpg" onclick="openImg(this)">
+<img src="check5.jpg" onclick="openImg(this)">
+<img src="check6.jpg" onclick="openImg(this)">
+<img src="check7.jpg" onclick="openImg(this)">
+<img src="check8.jpg" onclick="openImg(this)">
+<img src="check9.jpg" onclick="openImg(this)">
+<img src="check10.jpg" onclick="openImg(this)">
 </div>
 </div>
 
 <!-- 3 -->
-<div class="section" id="fabric3">
+<div class="section" id="f3">
 <h2>3. 條紋布</h2>
-
-<div class="images">
-<img src="stripe1.jpg">
-<img src="stripe2.jpg">
-<img src="stripe3.jpg">
+<div class="grid">
+<img src="stripe1.jpg" onclick="openImg(this)">
+<img src="stripe2.jpg" onclick="openImg(this)">
+<img src="stripe3.jpg" onclick="openImg(this)">
 </div>
 </div>
 
 <!-- 4 -->
-<div class="section" id="fabric4">
+<div class="section" id="f4">
 <h2>4. 防潑水四面彈機能布</h2>
-
-<div class="images">
-<img src="waterproof1.jpg">
-<img src="waterproof2.jpg">
-<img src="waterproof3.jpg">
+<div class="grid">
+<img src="water1.jpg" onclick="openImg(this)">
+<img src="water2.jpg" onclick="openImg(this)">
+<img src="water3.jpg" onclick="openImg(this)">
 </div>
 </div>
 
 <!-- 5 -->
-<div class="section" id="fabric5">
+<div class="section" id="f5">
 <h2>5. 包包布</h2>
-
-<div class="images">
-<img src="bag1.jpg">
-<img src="bag2.jpg">
-<img src="bag3.jpg">
+<div class="grid">
+<img src="bag1.jpg" onclick="openImg(this)">
+<img src="bag2.jpg" onclick="openImg(this)">
+<img src="bag3.jpg" onclick="openImg(this)">
 </div>
 </div>
 
 <!-- 6 -->
-<div class="section" id="fabric6">
+<div class="section" id="f6">
 <h2>6. 聚酯羊毛機能布</h2>
-
-<div class="images">
-<img src="wool1.jpg">
-<img src="wool2.jpg">
-<img src="wool3.jpg">
+<div class="grid">
+<img src="wool1.jpg" onclick="openImg(this)">
+<img src="wool2.jpg" onclick="openImg(this)">
+<img src="wool3.jpg" onclick="openImg(this)">
 </div>
 </div>
 
+</div>
+
+<!-- 放大圖片 -->
+<div class="modal" id="modal" onclick="closeImg()">
+<img id="modalImg">
 </div>
 
 <footer>
-<p>© 2026 布料供應商 | Fabric Supplier</p>
+<p>© 2026 布料供應商</p>
 </footer>
+
+<script>
+function openImg(img){
+    document.getElementById("modal").style.display="block";
+    document.getElementById("modalImg").src=img.src;
+}
+
+function closeImg(){
+    document.getElementById("modal").style.display="none";
+}
+</script>
 
 </body>
 </html>
