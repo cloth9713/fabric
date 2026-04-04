@@ -90,6 +90,7 @@
             transform: translateY(-1px);
         }
 
+        /* 導覽列容器 */
         nav {
             display: flex;
             flex-wrap: wrap;       
@@ -111,6 +112,13 @@
         }
 
         nav a:hover { color: var(--primary-color); }
+
+        /* 手機版強制換行區塊 */
+        .nav-break {
+            display: none;
+            flex-basis: 100%;
+            height: 0;
+        }
 
         /* ==========================================================================
            3. 內容排版
@@ -146,6 +154,7 @@
         .info-row .price { color: var(--price-color); font-weight: 700; } 
         .info-row .promo { color: var(--promo-color); font-weight: 600; } 
 
+        /* 布料網格設定 */
         .fabric-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -171,10 +180,8 @@
         .image-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
         .fabric-item:hover img { transform: scale(1.05); } 
 
-        .item-label { padding: 10px; text-align: center; font-size: 13px; color: #666; border-top: 1px solid #f0f0f0; }
-
         /* ==========================================================================
-           4. 燈箱與 RWD
+           4. 燈箱與 RWD (響應式設計)
            ========================================================================== */
         .lightbox {
             display: none; 
@@ -197,6 +204,18 @@
             .header-contact-btn { font-size: 12px; padding: 5px 12px; }
             .info-row { font-size: 14px; }
             .info-row .label { min-width: 60px; margin-right: 8px; } 
+
+            /* 手機版導覽列調整：確保分成兩行 */
+            nav {
+                gap: 10px 12px; 
+            }
+            nav a {
+                font-size: 13px;
+                padding: 4px 0;
+            }
+            .nav-break {
+                display: block; 
+            }
         }
     </style>
 </head>
@@ -205,7 +224,7 @@
 <header>
     <div class="title-container">
         <h1>布料供應商</h1>
-        <a href="https://m.me/cloth9713" target="_blank" class="header-contact-btn">
+        <a href="http://facebook.com/cloth9713?" target="_blank" class="header-contact-btn">
             私訊聯絡
         </a>
     </div>
@@ -214,6 +233,9 @@
         <a href="#section-1">格子</a>
         <a href="#stripe-fabric">條紋</a>
         <a href="#plain-fabric">素面</a>
+        
+        <div class="nav-break"></div>
+
         <a href="#section-2">四面彈防潑水</a>
         <a href="#section-3">聚酯羊毛</a>
         <a href="#section-4">TC布</a>
@@ -224,37 +246,40 @@
 <main>
     <section id="section-1">
         <div class="section-header">
-            <h2><span class="number">1.</span>A級平織布（素面 / 格子 / 條紋）</h2>
+            <h2><span class="number">1.</span>A級平織布（格子 / 條紋 / 素面）</h2>
             <div class="line"></div>
         </div>
         <div class="category-info">
             <div class="info-row"><span class="label">價格</span><span class="value price">一碼 55 元</span></div>
-            <div class="info-row"><span class="label">優惠</span><span class="value promo">10碼以上 53元，20碼以上 50元 (可混搭)</span></div>
+            <div class="info-row"><span class="label">優惠</span><span class="value promo">10碼以上 53 元，20碼以上 50 元 (可混搭)</span></div>
             <div class="info-row"><span class="label">材質</span><span class="value">A級尼龍 + 彈性纖維 (萊卡)</span></div>
+            <div class="info-row"><span class="label">幅寬</span><span class="value">約 132 公分</span></div>
+            <div class="info-row"><span class="label">特色</span><span class="value">抗皺、吸濕排汗、涼感、舒適透氣</span></div>
+            <div class="info-row"><span class="label">用途</span><span class="value">襯衫、洋裝、睡衣等</span></div>
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠製造</span></div>
         </div>
 
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/01.jpg"></div><div class="item-label">01</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/02.JPG"></div><div class="item-label">02</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/03.JPG"></div><div class="item-label">03</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/04.JPG"></div><div class="item-label">04</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/05.jpg"></div><div class="item-label">05</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/06.jpg"></div><div class="item-label">06</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/07.jpg"></div><div class="item-label">07</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/08.jpg"></div><div class="item-label">08</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/09.jpg"></div><div class="item-label">09</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/10.jpg"></div><div class="item-label">10</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/11.jpg"></div><div class="item-label">11</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/12.jpg"></div><div class="item-label">12</div></div>
-            <div class="fabric-item" id="stripe-fabric"><div class="image-box"><img src="img/13.jpg"></div><div class="item-label">13 (條紋系列)</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/14.jpg"></div><div class="item-label">14</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/15.jpg"></div><div class="item-label">15</div></div>
-            <div class="fabric-item" id="plain-fabric"><div class="image-box"><img src="img/16.jpg"></div><div class="item-label">16 (素面系列)</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/17.jpg"></div><div class="item-label">17</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/18.jpg"></div><div class="item-label">18</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/19.jpg"></div><div class="item-label">19</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/20.jpg"></div><div class="item-label">20</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/01.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/02.JPG"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/03.JPG"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/04.JPG"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/05.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/06.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/07.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/08.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/09.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/10.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/11.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/12.jpg"></div></div>
+            <div class="fabric-item" id="stripe-fabric"><div class="image-box"><img src="img/13.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/14.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/15.jpg"></div></div>
+            <div class="fabric-item" id="plain-fabric"><div class="image-box"><img src="img/16.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/17.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/18.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/19.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/20.jpg"></div></div>
         </div>
     </section>
 
@@ -271,7 +296,7 @@
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠（上市公司），品質保證！</span></div>
         </div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/21.jpg"></div><div class="item-label">21</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/21.jpg"></div></div>
         </div>
     </section>
 
@@ -288,7 +313,8 @@
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠（上市公司），品質保證！</span></div>
         </div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/25.jpg"></div><div class="item-label">25</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/25.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/26.jpg"></div></div>
         </div>
     </section>
 
@@ -304,7 +330,7 @@
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠製造</span></div>
         </div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/31.jpg"></div><div class="item-label">31</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/31.jpg"></div></div>
         </div>
     </section>
 
@@ -320,7 +346,7 @@
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠製造</span></div>
         </div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/35.jpg"></div><div class="item-label">32</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/35.jpg"></div></div>
         </div>
     </section>
 </main>
@@ -328,7 +354,7 @@
 <footer>
     <div style="text-align: center; padding: 40px 20px; background: #fff; border-top: 1px solid #eee;">
         <p style="color: #666; margin-bottom: 15px;">對布料有任何疑問嗎？歡迎直接私訊聯絡！</p>
-        <a href="https://m.me/cloth9713" target="_blank" style="display: inline-block; color: var(--accent-color); text-decoration: none; padding: 10px 25px; border: 1.5px solid var(--accent-color); border-radius: 4px; font-weight: 600; transition: var(--transition);">立即私訊聯絡</a>
+        <a href="http://facebook.com/cloth9713?" target="_blank" style="display: inline-block; color: var(--accent-color); text-decoration: none; padding: 10px 25px; border: 1.5px solid var(--accent-color); border-radius: 4px; font-weight: 600; transition: var(--transition);">立即私訊聯絡</a>
         <p style="color: #999; font-size: 13px; margin-top: 30px;">&copy; 2026 布料供應商 | 台灣大廠優質布料供應</p>
     </div>
 </footer>
@@ -341,20 +367,23 @@
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
 
+    // 為所有圖片綁定點擊事件以顯示燈箱
     document.querySelectorAll('.image-box img').forEach(image => {
         image.onclick = (e) => {
             e.stopPropagation();
             lightboxImg.src = image.src;
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden'; // 防止背景捲動
         };
     });
 
+    // 關閉燈箱功能
     function closeLightbox() {
         lightbox.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
 
+    // 按下 ESC 鍵也能關閉燈箱
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeLightbox();
     });
