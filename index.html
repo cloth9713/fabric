@@ -6,17 +6,17 @@
     <title>布料供應商 | 精選布料目錄 - 專業展示</title>
     <style>
         /* ==========================================================================
-           1. 基礎設定 (維護顏色與全域變數請改這裡)
+           1. 基礎設定與配色
            ========================================================================== */
         :root {
-            --primary-color: #0a2f57;  /* 深藍色：標題、主文字 */
-            --accent-color: #c09d6c;   /* 金棕色：編號、優惠強調、導覽列子項 */
+            --primary-color: #0a2f57;  /* 深藍色 */
+            --accent-color: #c09d6c;   /* 金棕色 */
             --bg-color: #fcfcfc;       /* 網頁底色 */
             --card-bg: #ffffff;        /* 產品卡片底色 */
             --text-main: #333333;
             --text-muted: #777777;
             --transition: all 0.4s ease;
-            --header-height: 160px;    /* 關鍵：如果你的導覽列變高，這裡要調大，點擊跳轉才不會擋到圖 */
+            --header-height: 140px;    /* 導覽列優化後高度降低，這裡同步調整 */
         }
 
         html {
@@ -34,14 +34,14 @@
         }
 
         /* ==========================================================================
-           2. 標頭與導覽列 (修改目錄按鈕請改此)
+           2. 標頭與手機版導覽列優化
            ========================================================================== */
         header {
             background-color: #fff;
-            padding: 25px 20px;
+            padding: 20px 0;
             text-align: center;
             border-bottom: 1px solid #eee;
-            position: sticky; /* 固定在頂部 */
+            position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.03);
@@ -49,150 +49,131 @@
 
         header h1 {
             margin: 0;
+            font-size: 22px;
             font-weight: 300;
             letter-spacing: 5px;
             color: var(--primary-color);
             text-transform: uppercase;
         }
 
+        header span {
+            display: block;
+            font-size: 10px;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        /* 導覽列核心修改：手機版預設橫向捲動 */
         nav {
             margin-top: 15px;
             display: flex;
-            flex-wrap: wrap; /* 手機版會自動換行 */
-            justify-content: center;
-            gap: 12px 20px;
+            flex-wrap: nowrap;         /* 強制不換行 */
+            overflow-x: auto;          /* 允許左右滑動 */
+            justify-content: flex-start;
+            padding: 5px 20px 15px 20px;
+            gap: 20px;
+            -webkit-overflow-scrolling: touch; /* iOS 順滑捲動 */
         }
+
+        /* 隱藏捲動條 */
+        nav::-webkit-scrollbar { display: none; }
 
         nav a {
             text-decoration: none;
             color: var(--text-muted);
             font-size: 14px;
             font-weight: 500;
+            white-space: nowrap;       /* 文字不准折行 */
             transition: var(--transition);
+            flex-shrink: 0;            /* 防止被擠壓 */
         }
 
-        nav a:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
+        nav a:hover { color: var(--primary-color); }
+        .nav-sub { color: var(--accent-color); font-weight: bold; }
 
-        /* 導覽列中的子類別樣式 (例如帶有 ⤷ 的項目) */
-        .nav-sub {
-            color: var(--accent-color);
-            font-weight: bold;
+        /* 桌機版回復置中排版 */
+        @media (min-width: 769px) {
+            nav { justify-content: center; flex-wrap: wrap; overflow: hidden; }
         }
 
         /* ==========================================================================
-           3. 內容版面配置
+           3. 內容與網格排版
            ========================================================================== */
-        main {
-            max-width: 1600px;
-            margin: 40px auto;
-            padding: 0 40px;
-        }
+        main { max-width: 1600px; margin: 30px auto; padding: 0 20px; }
+        section { margin-bottom: 60px; }
 
-        section {
-            margin-bottom: 80px;
-        }
+        .section-header { display: flex; align-items: center; margin-bottom: 20px; }
+        .section-header h2 { font-size: 20px; font-weight: 400; color: var(--primary-color); }
+        .section-header h2 .number { color: var(--accent-color); font-weight: 700; margin-right: 8px; }
+        .section-header .line { flex-grow: 1; height: 1px; background: #e0e0e0; margin-left: 15px; }
 
-        /* 區塊標題樣式 (1. A級平織布...) */
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .section-header h2 {
-            font-size: 26px;
-            font-weight: 400;
-            margin: 0;
-            color: var(--primary-color);
-            white-space: nowrap;
-        }
-
-        .section-header h2 .number {
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-right: 10px;
-        }
-
-        .section-header .line {
-            flex-grow: 1;
-            height: 1px;
-            background: #e0e0e0;
-            margin-left: 20px;
-        }
-
-        /* 產品介紹灰框 */
         .category-info {
             background: #f9f9f9;
             border-left: 4px solid var(--accent-color);
-            padding: 20px 25px;
-            margin-bottom: 35px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
             border-radius: 0 8px 8px 0;
-            color: #444;
-            font-size: 15.2px;
-            line-height: 1.85;
-            white-space: pre-wrap; /* 保留換行 */
+            font-size: 14px;
+            white-space: pre-wrap;
         }
 
-        /* ==========================================================================
-           4. 產品圖片網格 (控制圖片大小與排列)
-           ========================================================================== */
         .fabric-grid {
             display: grid;
-            /* minmax(280px, 1fr) 表示每張圖最少 280px 寬，會自動排版 */
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 20px;
         }
 
         .fabric-item {
             background: var(--card-bg);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             transition: var(--transition);
-            display: flex;
-            flex-direction: column;
         }
 
-        .fabric-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-        }
-
-        .image-box {
-            width: 100%;
-            /* 關鍵：控制圖片比例。3/4 是長方形，若要正方形請改 1/1 */
+        .image-box { 
+            width: 100%; 
             aspect-ratio: 3 / 4; 
-            overflow: hidden;
-            background-color: #f0f0f0;
+            overflow: hidden; 
+            background: #eee; 
+            cursor: zoom-in; /* 滑鼠移上去顯示放大鏡 */
         }
 
-        .image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 圖片自動填滿容器且不變形 */
-            transition: transform 0.5s ease;
+        .image-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+        .fabric-item:hover img { transform: scale(1.05); }
+
+        .item-label { padding: 10px; text-align: center; font-size: 13px; color: #666; border-top: 1px solid #f0f0f0; }
+
+        /* ==========================================================================
+           4. 圖片點擊放大 (Lightbox) 樣式
+           ========================================================================== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
         }
 
-        /* 圖片下方的編號文字 */
-        .item-label {
-            padding: 12px;
-            text-align: center;
-            font-size: 14px;
-            color: var(--text-muted);
-            border-top: 1px solid #f0f0f0;
+        .lightbox img { 
+            max-width: 95%; 
+            max-height: 95%; 
+            object-fit: contain; 
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
         }
 
-        /* RWD 響應式：手機版調整 */
+        .lightbox.active { display: flex; }
+        .lightbox.active img { transform: scale(1); }
+
+        /* 手機版網格調整 */
         @media (max-width: 768px) {
-            :root { --header-height: 220px; } /* 手機導覽列變高，所以增加 padding 預留空間 */
-            .fabric-grid { 
-                grid-template-columns: repeat(2, 1fr); /* 手機上一排顯示 2 張圖 */
-                gap: 15px; 
-            }
-            main { padding: 0 20px; }
+            .fabric-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .section-header h2 { font-size: 18px; }
         }
     </style>
 </head>
@@ -203,142 +184,126 @@
     <span>PREMIUM TEXTILE SOLUTIONS</span>
     <nav>
         <a href="#section-1">A級平織格子布</a>
-        <a href="#stripe-fabric" class="nav-sub">⤷ A級條紋布 (13)</a>
-        <a href="#plain-fabric" class="nav-sub">⤷ A級素面布 (16)</a>
-        
+        <a href="#stripe-fabric" class="nav-sub">⤷ 條紋系列</a>
+        <a href="#plain-fabric" class="nav-sub">⤷ 素面系列</a>
         <a href="#section-2">四面彈防潑水</a>
         <a href="#section-3">聚酯羊毛</a>
         <a href="#section-4">TC布</a>
-        <a href="#section-5">A級平織無彈格子布(包包)</a>
+        <a href="#section-5">A級平織無彈(包包)</a>
     </nav>
 </header>
 
 <main>
-
     <section id="section-1">
         <div class="section-header">
             <h2><span class="number">1.</span>A級平織布（素面 / 格子 / 條紋）</h2>
             <div class="line"></div>
         </div>
-        
         <div class="category-info">- 價格：一碼55元
 - 優惠：10碼以上53元，20碼以上50元（可混搭）
 - 材質：A級尼龍+彈性纖維（萊卡）
-- 幅寬：約132公分
-- 特色：抗皺、吸濕排汗、涼感、舒適透氣
-- 用途：襯衫、洋裝、睡衣等  
 - 產地：台灣大廠製造</div>
 
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/01.jpg" alt="產品01"></div><div class="item-label">01</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/02.JPG" alt="產品02"></div><div class="item-label">02</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/03.JPG" alt="產品03"></div><div class="item-label">03</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/04.JPG" alt="產品04"></div><div class="item-label">04</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/05.jpg" alt="產品05"></div><div class="item-label">05</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/06.jpg" alt="產品06"></div><div class="item-label">06</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/07.jpg" alt="產品07"></div><div class="item-label">07</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/08.jpg" alt="產品08"></div><div class="item-label">08</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/09.jpg" alt="產品09"></div><div class="item-label">09</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/10.jpg" alt="產品10"></div><div class="item-label">10</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/11.jpg" alt="產品11"></div><div class="item-label">11</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/12.jpg" alt="產品12"></div><div class="item-label">12</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/01.jpg"></div><div class="item-label">01</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/02.JPG"></div><div class="item-label">02</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/03.JPG"></div><div class="item-label">03</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/04.JPG"></div><div class="item-label">04</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/05.jpg"></div><div class="item-label">05</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/06.jpg"></div><div class="item-label">06</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/07.jpg"></div><div class="item-label">07</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/08.jpg"></div><div class="item-label">08</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/09.jpg"></div><div class="item-label">09</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/10.jpg"></div><div class="item-label">10</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/11.jpg"></div><div class="item-label">11</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/12.jpg"></div><div class="item-label">12</div></div>
             
             <div class="fabric-item" id="stripe-fabric">
-                <div class="image-box"><img src="img/13.jpg" alt="A級條紋布"></div>
+                <div class="image-box"><img src="img/13.jpg"></div>
                 <div class="item-label">13 (條紋系列)</div>
             </div>
 
-            <div class="fabric-item"><div class="image-box"><img src="img/14.jpg" alt="產品14"></div><div class="item-label">14</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/15.jpg" alt="產品15"></div><div class="item-label">15</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/14.jpg"></div><div class="item-label">14</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/15.jpg"></div><div class="item-label">15</div></div>
             
             <div class="fabric-item" id="plain-fabric">
-                <div class="image-box"><img src="img/16.jpg" alt="A級素面布"></div>
+                <div class="image-box"><img src="img/16.jpg"></div>
                 <div class="item-label">16 (素面系列)</div>
             </div>
 
-            <div class="fabric-item"><div class="image-box"><img src="img/17.jpg" alt="產品17"></div><div class="item-label">17</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/18.jpg" alt="產品18"></div><div class="item-label">18</div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/19.jpg" alt="產品19"></div><div class="item-label">19</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/17.jpg"></div><div class="item-label">17</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/18.jpg"></div><div class="item-label">18</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/19.jpg"></div><div class="item-label">19</div></div>
         </div>
     </section>
 
     <section id="section-2">
-        <div class="section-header">
-            <h2><span class="number">2.</span>四面彈防潑水機能布</h2>
-            <div class="line"></div>
-        </div>
-        <div class="category-info">*優惠價：一碼80元
-*多件優惠（全品項可搭配）：
-     *任選10碼以上，每碼78元
-     *任選20碼以上，每碼75元
-*特色：防潑水、透氣、四面彈性
-*成分：棉 55% + 尼龍 32% + 萊卡 13%
-*幅寬：132-138 公分
-*重量：每碼 230 公克
-*用途：外套、上衣、長短褲、登山褲等服飾
-*產地：台灣大廠（上市公司），品質保證！</div>
+        <div class="section-header"><h2><span class="number">2.</span>四面彈防潑水機能布</h2><div class="line"></div></div>
+        <div class="category-info">*一碼80元 / 10碼78元 / 20碼75元</div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/21.jpg" alt="產品21"></div><div class="item-label">21</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/21.jpg"></div><div class="item-label">21</div></div>
         </div>
     </section>
 
     <section id="section-3">
-        <div class="section-header">
-            <h2><span class="number">3.</span>聚酯羊毛機能布</h2>
-            <div class="line"></div>
-        </div>
-        <div class="category-info">單價：一碼 85元
-優惠：10碼以上83元，20碼以上80元（可混搭）
-成分：聚酯纖維54% + 羊毛34%+彈性纖維12% 
-特色：防縮羊毛、保暖、舒適
-幅寬：132–140 公分
-重量：每碼 255 公克
-用途：上衣、外套、長短褲等各式服飾
-產地：台灣大廠（上市公司），品質保證！</div>
+        <div class="section-header"><h2><span class="number">3.</span>聚酯羊毛機能布</h2><div class="line"></div></div>
+        <div class="category-info">*一碼85元 / 10碼83元 / 20碼80元</div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/25.jpg" alt="產品25"></div><div class="item-label">25</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/25.jpg"></div><div class="item-label">25</div></div>
         </div>
     </section>
 
     <section id="section-4">
-        <div class="section-header">
-            <h2><span class="number">4.</span>TC布</h2>
-            <div class="line"></div>
-        </div>
-        <div class="category-info">- 價格：一碼65元
-- 優惠：10碼以上63元，20碼以上60元（可混搭）
-- 材質：TC材質
-- 碼重：200克
-- 幅寬：約132公分
-- 用途：襯衫、洋裝、睡衣等  
-- 產地：台灣大廠製造</div>
+        <div class="section-header"><h2><span class="number">4.</span>TC布</h2><div class="line"></div></div>
+        <div class="category-info">*一碼65元 / 10碼63元 / 20碼60元</div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/31.jpg" alt="產品31"></div><div class="item-label">31</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/31.jpg"></div><div class="item-label">31</div></div>
         </div>
     </section>
 
     <section id="section-5">
-        <div class="section-header">
-            <h2><span class="number">5.</span>A級平織無彈（可作包包）</h2>
-            <div class="line"></div>
-        </div>
-        <div class="category-info">- 價格：一碼60元
-- 優惠：10碼以上58元，20碼以上55元（可混搭）
-- 材質：A級尼龍（無彈）
-- 碼重：200克
-- 幅寬：約132公分
-- 用途：襯衫、洋裝、睡衣、包包等
-- 產地：台灣大廠製造</div>
+        <div class="section-header"><h2><span class="number">5.</span>A級平織無彈（可作包包）</h2><div class="line"></div></div>
+        <div class="category-info">*一碼60元 / 10碼58元 / 20碼55元</div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/32.jpg" alt="產品32"></div><div class="item-label">32</div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/32.jpg"></div><div class="item-label">32</div></div>
         </div>
     </section>
-
 </main>
 
 <footer>
-    <p>&copy; 2026 布料供應商 | 台灣大廠優質布料供應</p>
+    <p style="text-align: center; color: #999; padding: 40px 0;">&copy; 2026 布料供應商 | 台灣大廠優質布料供應</p>
 </footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img src="" id="lightbox-img">
+</div>
+
+<script>
+    // 取得燈箱元素
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    // 幫所有圖片加上「點擊放大」功能
+    document.querySelectorAll('.image-box img').forEach(image => {
+        image.onclick = (e) => {
+            e.stopPropagation(); // 阻止事件冒泡
+            lightboxImg.src = image.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 放大時禁止背景捲動
+        };
+    });
+
+    // 關閉放大功能
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto'; // 恢復捲動
+    }
+
+    // 按下 ESC 鍵關閉
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+</script>
 
 </body>
 </html>
