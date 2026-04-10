@@ -20,11 +20,13 @@
             --promo-color: #2e7d32;    
             
             --transition: all 0.3s ease; 
-            --header-height: 150px;    
+            /* 預設標頭高度，後續由 JS 或 Media Query 調整 */
+            --header-height: 160px;    
         }
 
         html {
             scroll-behavior: smooth; 
+            /* 關鍵：解決點擊導覽後被標頭擋住的問題 */
             scroll-padding-top: var(--header-height); 
         }
 
@@ -42,7 +44,7 @@
            ========================================================================== */
         header {
             background-color: #fff;
-            padding: 25px 0 0 0; 
+            padding: 20px 0 0 0; 
             border-bottom: 2px solid #f0f0f0; 
             position: sticky; 
             top: 0;
@@ -55,18 +57,20 @@
             align-items: center;
             justify-content: center; 
             position: relative; 
-            margin-bottom: 18px;
-            padding: 0 15px;
-            min-height: 35px; 
+            margin-bottom: 15px;
+            padding: 0 20px;
+            min-height: 40px; 
         }
 
         header h1 {
             margin: 0;
-            font-size: 20px; 
+            font-size: 22px; 
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             color: var(--primary-color);
             text-transform: uppercase;
+            text-align: center; /* 強制置中 */
+            flex: 1;
         }
 
         .header-contact-btn {
@@ -97,7 +101,7 @@
             display: flex;
             flex-wrap: wrap;       
             justify-content: center;
-            padding: 10px 15px 22px 15px; 
+            padding: 10px 15px 20px 15px; 
             gap: 10px 12px;          
             max-width: 900px;
             margin: 0 auto;
@@ -124,16 +128,10 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
 
-        .nav-break {
-            display: none;
-            flex-basis: 100%;
-            height: 0;
-        }
-
         /* ==========================================================================
            3. 內容排版
            ========================================================================== */
-        main { max-width: 1600px; margin: 30px auto; padding: 0 20px; }
+        main { max-width: 1400px; margin: 30px auto; padding: 0 20px; }
         section { margin-bottom: 60px; }
 
         .section-header { display: flex; align-items: center; margin-bottom: 20px; }
@@ -159,7 +157,7 @@
         }
 
         .info-row:last-child { border-bottom: none; } 
-        .info-row .label { min-width: 70px; color: var(--text-muted); font-weight: 600; margin-right: 12px; font-size: 14px; }
+        .info-row .label { min-width: 75px; color: var(--text-muted); font-weight: 600; margin-right: 12px; font-size: 14px; }
         .info-row .value { color: var(--text-main); flex: 1; }
         .info-row .price { color: var(--price-color); font-weight: 700; } 
         .info-row .promo { color: var(--promo-color); font-weight: 600; } 
@@ -190,7 +188,7 @@
         .fabric-item:hover img { transform: scale(1.05); } 
 
         /* ==========================================================================
-           4. 燈箱優化 (含關閉按鈕)
+           4. 燈箱與工具
            ========================================================================== */
         .lightbox {
             display: none; 
@@ -200,7 +198,6 @@
             background: rgba(0,0,0,0.9);
             justify-content: center;
             align-items: center;
-            cursor: default; /* 改為預設，避免誤導 */
         }
 
         .lightbox img { 
@@ -215,7 +212,6 @@
         .lightbox.active { display: flex; } 
         .lightbox.active img { transform: scale(1); }
 
-        /* 新增：關閉按鈕樣式 */
         .close-btn {
             position: absolute;
             top: 20px;
@@ -227,36 +223,46 @@
             line-height: 1;
             z-index: 2100;
             transition: var(--transition);
-            user-select: none; /* 防止選取到文字 */
-        }
-
-        .close-btn:hover {
-            color: var(--accent-color);
-            transform: scale(1.1);
         }
 
         /* 響應式設計 (RWD) */
         @media (max-width: 768px) {
+            :root {
+                /* 手機版導覽列較高，增加捲動補償值 */
+                --header-height: 220px; 
+            }
+
             .fabric-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            header h1 { font-size: 18px; letter-spacing: 2px; }
             
-            .title-container { justify-content: space-between; position: relative; }
-            .header-contact-btn { position: relative; right: 0; font-size: 12px; padding: 5px 12px; }
+            header h1 { 
+                font-size: 20px; 
+                letter-spacing: 2px;
+                padding: 0 10px;
+            }
+            
+            .title-container { 
+                flex-direction: column; /* 手機版讓標題與按鈕垂直分布以利置中 */
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+            
+            .header-contact-btn { 
+                position: static; /* 取消絕對定位 */
+                font-size: 12px; 
+                padding: 5px 12px; 
+            }
             
             .info-row { font-size: 14px; }
-            .info-row .label { min-width: 60px; margin-right: 8px; } 
+            .info-row .label { min-width: 65px; margin-right: 8px; } 
 
-            nav { gap: 10px 12px; }
-            nav a { font-size: 13px; padding: 4px 12px; }
-            .nav-break { display: block; }
-
-            .close-btn { top: 15px; right: 15px; font-size: 40px; }
+            nav { padding-bottom: 15px; }
+            nav a { font-size: 12px; padding: 5px 10px; }
         }
     </style>
 </head>
 <body>
 
-<header>
+<header id="site-header">
     <div class="title-container">
         <h1>布料供應商</h1>
         <a href="http://facebook.com/cloth9713?" target="_blank" class="header-contact-btn">
@@ -268,12 +274,10 @@
         <a href="#section-1">格子系列</a>
         <a href="#stripe-fabric">條紋系列</a>
         <a href="#plain-fabric">素面系列</a>
-        
-        <div class="nav-break"></div>
-
         <a href="#section-2">四面彈防潑水</a>
         <a href="#section-3">聚酯羊毛</a>
         <a href="#section-4">TC布</a>
+        <a href="#section-5">無彈尼龍</a>
     </nav>
 </header>
 
@@ -317,8 +321,8 @@
         </div>
     </section>
 
-    <section >
-        <div class="section-header" id="section-2"><h2><span class="number">2.</span>四面彈防潑水機能布</h2><div class="line"></div></div>
+    <section id="section-2">
+        <div class="section-header"><h2><span class="number">2.</span>四面彈防潑水機能布</h2><div class="line"></div></div>
         <div class="category-info">
             <div class="info-row"><span class="label">優惠價</span><span class="value price">一碼 80 元</span></div>
             <div class="info-row"><span class="label">多件優惠</span><span class="value promo">任選10碼以上 78元 / 20碼以上 75元 (全品項可搭配)</span></div>
@@ -334,8 +338,8 @@
         </div>
     </section>
 
-    <section>
-        <div class="section-header"  id="section-3"><h2><span class="number">3.</span>聚酯羊毛機能布</h2><div class="line"></div></div>
+    <section id="section-3">
+        <div class="section-header"><h2><span class="number">3.</span>聚酯羊毛機能布</h2><div class="line"></div></div>
         <div class="category-info">
             <div class="info-row"><span class="label">單價</span><span class="value price">一碼 85 元</span></div>
             <div class="info-row"><span class="label">優惠</span><span class="value promo">10碼以上 83元 / 20碼以上 80元 (可混搭)</span></div>
@@ -352,8 +356,8 @@
         </div>
     </section>
 
-    <section >
-        <div class="section-header" id="section-4"><h2><span class="number">4.</span>TC布</h2><div class="line"></div></div>
+    <section id="section-4">
+        <div class="section-header"><h2><span class="number">4.</span>TC布</h2><div class="line"></div></div>
         <div class="category-info">
             <div class="info-row"><span class="label">價格</span><span class="value price">一碼 65 元</span></div>
             <div class="info-row"><span class="label">優惠</span><span class="value promo">10碼以上 63元 / 20碼以上 60元 (可混搭)</span></div>
@@ -368,8 +372,8 @@
         </div>
     </section>
 
-    <section >
-        <div class="section-header" id="section-5"> <h2><span class="number">5.</span> 無彈尼龍 (包包)</h2><div class="line"></div></div>
+    <section id="section-5">
+        <div class="section-header"> <h2><span class="number">5.</span> 無彈尼龍 (包包)</h2><div class="line"></div></div>
         <div class="category-info">
             <div class="info-row"><span class="label">價格</span><span class="value price">一碼 60 元</span></div>
             <div class="info-row"><span class="label">優惠</span><span class="value promo">10碼以上 58元 / 20碼以上 55元 (可混搭)</span></div>
@@ -401,6 +405,17 @@
 <script>
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+    const header = document.getElementById('site-header');
+
+    // 自動計算 Header 高度並修正捲動位置
+    function updateScrollPadding() {
+        const headerHeight = header.offsetHeight;
+        document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+    }
+
+    // 初始化與畫面縮放時重新計算
+    window.addEventListener('load', updateScrollPadding);
+    window.addEventListener('resize', updateScrollPadding);
 
     // 開啟燈箱
     document.querySelectorAll('.image-box img').forEach(image => {
