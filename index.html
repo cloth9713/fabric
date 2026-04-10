@@ -20,13 +20,11 @@
             --promo-color: #2e7d32;    
             
             --transition: all 0.3s ease; 
-            /* 預設標頭高度，後續由 JS 或 Media Query 調整 */
             --header-height: 160px;    
         }
 
         html {
             scroll-behavior: smooth; 
-            /* 關鍵：解決點擊導覽後被標頭擋住的問題 */
             scroll-padding-top: var(--header-height); 
         }
 
@@ -40,7 +38,7 @@
         }
 
         /* ==========================================================================
-           2. 標頭 (Header)
+           2. 標頭 (Header) - 修改重點
            ========================================================================== */
         header {
             background-color: #fff;
@@ -54,9 +52,9 @@
 
         .title-container {
             display: flex;
-            align-items: center;
-            justify-content: center; 
-            position: relative; 
+            align-items: center;      /* 垂直置中 */
+            justify-content: center;   /* 水平置中整組內容 */
+            gap: 15px;                /* 標題與按鈕的間距 */
             margin-bottom: 15px;
             padding: 0 20px;
             min-height: 40px; 
@@ -64,18 +62,16 @@
 
         header h1 {
             margin: 0;
-            font-size: 22px; 
+            font-size: 24px; 
             font-weight: 600;
             letter-spacing: 4px;
             color: var(--primary-color);
             text-transform: uppercase;
-            text-align: center; /* 強制置中 */
-            flex: 1;
+            /* 移除 flex: 1 以便讓按鈕緊隨其後 */
         }
 
         .header-contact-btn {
-            position: absolute; 
-            right: 20px;        
+            /* 移除 position: absolute */
             text-decoration: none;
             background: transparent;
             color: var(--accent-color);
@@ -228,7 +224,6 @@
         /* 響應式設計 (RWD) */
         @media (max-width: 768px) {
             :root {
-                /* 手機版導覽列較高，增加捲動補償值 */
                 --header-height: 220px; 
             }
 
@@ -237,19 +232,17 @@
             header h1 { 
                 font-size: 20px; 
                 letter-spacing: 2px;
-                padding: 0 10px;
             }
             
             .title-container { 
-                flex-direction: column; /* 手機版讓標題與按鈕垂直分布以利置中 */
-                gap: 10px;
-                margin-bottom: 10px;
+                /* 手機版若空間不足仍可保持一排，或改為 gap 縮小 */
+                gap: 8px;
+                padding: 0 10px;
             }
             
             .header-contact-btn { 
-                position: static; /* 取消絕對定位 */
                 font-size: 12px; 
-                padding: 5px 12px; 
+                padding: 4px 10px; 
             }
             
             .info-row { font-size: 14px; }
@@ -413,7 +406,6 @@
         document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
     }
 
-    // 初始化與畫面縮放時重新計算
     window.addEventListener('load', updateScrollPadding);
     window.addEventListener('resize', updateScrollPadding);
 
@@ -433,7 +425,6 @@
         document.body.style.overflow = 'auto';
     }
 
-    // 按下 ESC 鍵關閉
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeLightbox();
     });
