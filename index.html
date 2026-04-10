@@ -42,8 +42,8 @@
            ========================================================================== */
         header {
             background-color: #fff;
-            padding: 25px 0 0 0; /* 增加頂部留白 */
-            border-bottom: 2px solid #f0f0f0; /* 明確的底線分隔 */
+            padding: 25px 0 0 0; 
+            border-bottom: 2px solid #f0f0f0; 
             position: sticky; 
             top: 0;
             z-index: 1000;
@@ -53,16 +53,16 @@
         .title-container {
             display: flex;
             align-items: center;
-            justify-content: center; /* 讓標題置中 */
-            position: relative; /* 設定相對定位，供右側按鈕絕對定位使用 */
+            justify-content: center; 
+            position: relative; 
             margin-bottom: 18px;
             padding: 0 15px;
-            min-height: 35px; /* 給予基本高度確保按鈕定位正確 */
+            min-height: 35px; 
         }
 
         header h1 {
             margin: 0;
-            font-size: 20px; /* 縮小級距，平衡視覺重量 */
+            font-size: 20px; 
             font-weight: 600;
             letter-spacing: 3px;
             color: var(--primary-color);
@@ -70,8 +70,8 @@
         }
 
         .header-contact-btn {
-            position: absolute; /* 絕對定位，不影響標題置中 */
-            right: 20px;        /* 靠右固定 */
+            position: absolute; 
+            right: 20px;        
             text-decoration: none;
             background: transparent;
             color: var(--accent-color);
@@ -93,12 +93,11 @@
             transform: translateY(-1px);
         }
 
-        /* 導覽列優化：膠囊化按鈕與適度間距 */
         nav {
             display: flex;
             flex-wrap: wrap;       
             justify-content: center;
-            padding: 10px 15px 22px 15px; /* 增加底部間距讓底線更好看 */
+            padding: 10px 15px 22px 15px; 
             gap: 10px 12px;          
             max-width: 900px;
             margin: 0 auto;
@@ -112,8 +111,8 @@
             white-space: nowrap;   
             transition: var(--transition);
             padding: 7px 15px;
-            background: #f5f5f5; /* 淺灰色基底 */
-            border-radius: 25px; /* 完全圓角膠囊感 */
+            background: #f5f5f5; 
+            border-radius: 25px; 
             border: 1px solid transparent;
         }
 
@@ -125,7 +124,6 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
 
-        /* 手機版強制換行區塊 */
         .nav-break {
             display: none;
             flex-basis: 100%;
@@ -166,7 +164,6 @@
         .info-row .price { color: var(--price-color); font-weight: 700; } 
         .info-row .promo { color: var(--promo-color); font-weight: 600; } 
 
-        /* 布料網格設定 */
         .fabric-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -193,7 +190,7 @@
         .fabric-item:hover img { transform: scale(1.05); } 
 
         /* ==========================================================================
-           4. 燈箱與 RWD (響應式設計)
+           4. 燈箱優化 (含關閉按鈕)
            ========================================================================== */
         .lightbox {
             display: none; 
@@ -203,35 +200,57 @@
             background: rgba(0,0,0,0.9);
             justify-content: center;
             align-items: center;
-            cursor: zoom-out;
+            cursor: default; /* 改為預設，避免誤導 */
         }
 
-        .lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; transform: scale(0.9); transition: 0.3s; }
+        .lightbox img { 
+            max-width: 90%; 
+            max-height: 90%; 
+            object-fit: contain; 
+            transform: scale(0.9); 
+            transition: 0.3s; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
         .lightbox.active { display: flex; } 
         .lightbox.active img { transform: scale(1); }
 
+        /* 新增：關閉按鈕樣式 */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #fff;
+            font-size: 45px;
+            font-weight: 300;
+            cursor: pointer;
+            line-height: 1;
+            z-index: 2100;
+            transition: var(--transition);
+            user-select: none; /* 防止選取到文字 */
+        }
+
+        .close-btn:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        /* 響應式設計 (RWD) */
         @media (max-width: 768px) {
             .fabric-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             header h1 { font-size: 18px; letter-spacing: 2px; }
             
-            /* 手機版排版微調，避免標題與按鈕重疊 */
             .title-container { justify-content: space-between; position: relative; }
             .header-contact-btn { position: relative; right: 0; font-size: 12px; padding: 5px 12px; }
             
             .info-row { font-size: 14px; }
             .info-row .label { min-width: 60px; margin-right: 8px; } 
 
-            /* 手機版導覽列調整：確保分成兩行 */
-            nav {
-                gap: 10px 12px; 
-            }
-            nav a {
-                font-size: 13px;
-                padding: 4px 12px; /* 手機版略微縮小膠囊內距 */
-            }
-            .nav-break {
-                display: block; 
-            }
+            nav { gap: 10px 12px; }
+            nav a { font-size: 13px; padding: 4px 12px; }
+            .nav-break { display: block; }
+
+            .close-btn { top: 15px; right: 15px; font-size: 40px; }
         }
     </style>
 </head>
@@ -255,7 +274,6 @@
         <a href="#section-2">四面彈防潑水</a>
         <a href="#section-3">聚酯羊毛</a>
         <a href="#section-4">TC布</a>
-        <!--<a href="#section-5">尼龍無彈(包包)</a>-->
     </nav>
 </header>
 
@@ -276,7 +294,6 @@
         </div>
 
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/01.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/02.JPG"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/03.JPG"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/04.JPG"></div></div>
@@ -296,6 +313,7 @@
             <div class="fabric-item"><div class="image-box"><img src="img/18.JPG"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/19.JPG"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/20.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/01.jpg"></div></div>
         </div>
     </section>
 
@@ -376,30 +394,31 @@
 </footer>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <img src="" id="lightbox-img">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <img src="" id="lightbox-img" onclick="event.stopPropagation()">
 </div>
 
 <script>
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
 
-    // 為所有圖片綁定點擊事件以顯示燈箱
+    // 開啟燈箱
     document.querySelectorAll('.image-box img').forEach(image => {
         image.onclick = (e) => {
             e.stopPropagation();
             lightboxImg.src = image.src;
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // 防止背景捲動
+            document.body.style.overflow = 'hidden'; 
         };
     });
 
-    // 關閉燈箱功能
+    // 關閉燈箱
     function closeLightbox() {
         lightbox.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
 
-    // 按下 ESC 鍵也能關閉燈箱
+    // 按下 ESC 鍵關閉
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeLightbox();
     });
