@@ -78,7 +78,7 @@
         /* 按鈕群組的容器 */
         .header-actions {
             display: flex;
-            flex-direction: row; /* 電腦版按鈕永遠同一排 */
+            flex-direction: row; /* 按鈕永遠同一排 */
             align-items: center;
             gap: 10px; 
         }
@@ -131,7 +131,7 @@
         /* 導覽列：維持自動換行排列 */
         nav {
             display: flex;
-            flex-wrap: wrap;      
+            flex-wrap: wrap;       
             justify-content: center;
             padding: 5px 15px 10px 15px; /* 縮小底部留白 */
             gap: 8px 10px;          
@@ -258,38 +258,33 @@
            📱 手機版極致空間優化 
            ========================================================================== */
         @media (max-width: 768px) {
-            :root { --header-height: 155px; } /* 自動調整捲動高度 */
+            :root { --header-height: 160px; } /* 自動調整捲動高度 */
             
             .fabric-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             
-            /* 將標題獨立一排，按鈕往下放 */
+            /* 將標題與按鈕緊湊排列，省下大量高度 */
             .title-container { 
-                flex-direction: column; /* 上下兩排排列 */
-                justify-content: center;
-                align-items: center; /* 標題置中，若想靠左可改為 flex-start */
-                gap: 12px; /* 標題與下方按鈕的間隔 */
-                padding: 10px 15px 5px 15px; 
+                flex-direction: column; /* 標題在上，按鈕在下 */
+                gap: 8px;
+                padding: 8px 12px 2px 12px; /* 砍掉多餘的 padding */
             }
 
             header h1 { 
-                font-size: 22px; 
+                font-size: 20px; 
                 letter-spacing: 2px;
-                margin: 0;
-                text-align: center;
             }
 
             .header-actions {
                 width: 100%;
-                flex-direction: row; /* 兩個按鈕同一排 */
-                justify-content: space-between; 
-                gap: 8px; /* 兩個按鈕之間的間隔 */
+                justify-content: space-between; /* 兩個按鈕左右撐開 */
+                gap: 8px; /* 縮小按鈕之間的距離 */
             }
 
             .btn-base {
-                flex: 1; /* 兩個按鈕平分 100% 的寬度，各佔一半 */
+                flex: 1; /* 確保兩個按鈕各佔一半寬度、同一排 */
                 justify-content: center;
-                font-size: 12px; /* 字體微調以塞入一行 */
-                padding: 8px 0; /* 加大上下點擊範圍，左右由 flex: 1 自動撐開 */
+                font-size: 12px; /* 縮小字體確保塞入手機畫面 */
+                padding: 6px 2px; 
             }
             
             /* 導覽列縮減高度 */
@@ -308,21 +303,21 @@
 
 <header id="site-header">
     <div class="title-container">
-        <!-- 第一排：標題獨立 -->
+        <!-- 標題 -->
         <h1>布料供應商</h1>
         
-        <!-- 第二排：按鈕區塊 (兩個按鈕同一排，平分寬度) -->
+        <!-- 按鈕區塊 (兩個按鈕同一排) -->
         <div class="header-actions">
-            <a href="http://facebook.com/cloth9713?" target="_blank" class="btn-base primary-btn">
-                💬 FB洽詢(優惠)
+            <a href="http://facebook.com/cloth9713" target="_blank" class="btn-base primary-btn">
+                💬 FB私訊詢問(價格優惠)
             </a>
-            <a href="https://s.shopee.tw/3qjsg00zuj" target="_blank" class="btn-base secondary-btn">
-                🛒 蝦皮(含平台費)
+            <a href="https://s.shopee.tw/3g0Sf3drxM" target="_blank" class="btn-base secondary-btn">
+                🛒 蝦皮賣場(含平台費)
             </a>
         </div>
     </div>
     
-    <!-- 導覽列維持原本的分類排版 -->
+    <!-- 導覽列維持原本的分類排版 (不使用橫向滑動) -->
     <nav>
         <a href="#section-crinkle">皺皺布系列</a>
         <a href="#section-1">格子系列</a>
@@ -485,10 +480,10 @@
         <h3 style="color: var(--primary-color); margin-bottom: 25px; font-weight: 600;">有喜歡的布料嗎？馬上聯絡我們！</h3>
         
         <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-            <a href="http://facebook.com/cloth9713?" target="_blank" class="btn-base primary-btn" style="padding: 10px 25px; font-size: 15px;">
+            <a href="http://facebook.com/cloth9713" target="_blank" class="btn-base primary-btn" style="padding: 10px 25px; font-size: 15px;">
                 💬 私訊洽詢(推薦)
             </a>
-            <a href="https://s.shopee.tw/3qjsg00zuj" target="_blank" class="btn-base secondary-btn" style="padding: 10px 25px; font-size: 15px;">
+            <a href="https://s.shopee.tw/3g0Sf3drxM" target="_blank" class="btn-base secondary-btn" style="padding: 10px 25px; font-size: 15px;">
                 🛒 蝦皮賣場
             </a>
         </div>
