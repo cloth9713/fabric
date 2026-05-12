@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>布料供應商 | 精選布料目錄 </title>
     <!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM9B1S7W12"></script>
-	<script>
-		  window.dataLayer = window.dataLayer || [];
- 		  function gtag(){dataLayer.push(arguments);}
-	 	  gtag('js', new Date());
- 		  gtag('config', 'G-KM9B1S7W12');
-	</script>
-	
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KM9B1S7W12"></script>
+    <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-KM9B1S7W12');
+    </script>
+    
     <style>
         /* ==========================================================================
            1. 全域變數與基礎設定
@@ -61,7 +61,7 @@
             display: flex;
             align-items: center;      
             justify-content: center;   
-            gap: 15px;                
+            gap: 20px;                
             margin-bottom: 15px;
             padding: 0 20px;
             min-height: 40px; 
@@ -76,26 +76,55 @@
             text-transform: uppercase;
         }
 
-        .header-contact-btn {
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* 按鈕共用基礎樣式 */
+        .btn-base {
             text-decoration: none;
-            background: transparent;
-            color: var(--accent-color);
             font-size: 13px;
             font-weight: 600;
             padding: 6px 16px;
-            border: 1.5px solid var(--accent-color);
             border-radius: 4px; 
             white-space: nowrap;
             transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 6px;
+            cursor: pointer;
         }
 
-        .header-contact-btn:hover {
+        /* 🥇 主推按鈕：私訊聯絡 (實心高光設計) */
+        .primary-btn {
             background-color: var(--accent-color);
-            color: #fff;
+            color: #fff !important;
+            border: 1.5px solid var(--accent-color);
+            box-shadow: 0 2px 6px rgba(192, 157, 108, 0.4);
+        }
+
+        .primary-btn:hover {
+            background-color: #a88757;
+            border-color: #a88757;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(192, 157, 108, 0.6);
+        }
+
+        /* 🥈 次要按鈕：蝦皮賣場 (弱化為淺灰框，滑鼠移入變蝦皮橘) */
+        .secondary-btn {
+            background-color: transparent;
+            color: #888 !important;
+            border: 1px solid #ccc !important;
+        }
+
+        .secondary-btn:hover {
+            border-color: #ee4d2d !important;
+            color: #ee4d2d !important;
+            background-color: #fff !important;
             transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(238, 77, 45, 0.1);
         }
 
         nav {
@@ -189,8 +218,13 @@
         .fabric-item:hover img { transform: scale(1.05); } 
 
         /* ==========================================================================
-           4. 燈箱與工具
+           4. 頁尾與燈箱工具
            ========================================================================== */
+        .footer-btn {
+            font-size: 15px;
+            padding: 10px 25px;
+        }
+
         .lightbox {
             display: none; 
             position: fixed;
@@ -229,7 +263,7 @@
         /* 響應式設計 (RWD) */
         @media (max-width: 768px) {
             :root {
-                --header-height: 220px; 
+                --header-height: 270px; /* 增加標頭高度以容納按鈕換行 */
             }
 
             .fabric-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -240,13 +274,21 @@
             }
             
             .title-container { 
-                gap: 8px;
-                padding: 0 10px;
+                flex-direction: column; /* 手機版標題與按鈕上下排 */
+                gap: 12px;
+                padding: 10px;
             }
-            
-            .header-contact-btn { 
-                font-size: 12px; 
-                padding: 4px 10px; 
+
+            .header-buttons {
+                flex-direction: column; /* 手機版按鈕上下排，避免文字太長破版 */
+                width: 100%;
+                gap: 8px;
+            }
+
+            .btn-base {
+                width: 100%; /* 手機版按鈕滿版寬度 */
+                justify-content: center;
+                padding: 8px 10px;
             }
             
             .info-row { font-size: 14px; }
@@ -262,9 +304,14 @@
 <header id="site-header">
     <div class="title-container">
         <h1>布料供應商</h1>
-        <a href="http://facebook.com/cloth9713?" target="_blank" class="header-contact-btn">
-            私訊聯絡
-        </a>
+        <div class="header-buttons">
+            <a href="http://facebook.com/cloth9713" target="_blank" class="btn-base primary-btn">
+                💬 FB私訊洽詢（價格優惠）
+            </a>
+            <a href="https://s.shopee.tw/3qjsg00zuj" target="_blank" class="btn-base secondary-btn">
+                🛒 蝦皮賣場（含平台服務費）
+            </a>
+        </div>
     </div>
     
     <nav>
@@ -280,7 +327,7 @@
 </header>
 
 <main>
-    <!-- 新增：皺皺布系列 -->
+    <!-- 皺皺布系列 -->
     <section id="section-crinkle">
         <div class="section-header">
             <h2><span class="number">1.</span>皺皺布系列</h2>
@@ -293,11 +340,15 @@
             <div class="info-row"><span class="label">幅寬</span><span class="value">約 120-132 公分</span></div>
             <div class="info-row"><span class="label">用途</span><span class="value">洋裝、睡衣、襯衫、褲子等</span></div>
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠製造</span></div>
+            <div class="info-row" style="border-top: 1px dashed #eee; padding-top: 8px; margin-top: 4px; border-bottom: none;">
+                <span class="label" style="color: #d9534f;">※ 備註</span>
+                <span class="value" style="font-size: 13px; color: #666;">蝦皮賣場因含平台手續費，單價較高。私訊下單可享此優惠價。</span>
+            </div>
         </div>
         <div class="fabric-grid">
             <div class="fabric-item"><div class="image-box"><img src="img/60.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/65.jpg"></div></div>
-			<div class="fabric-item"><div class="image-box"><img src="img/67.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/67.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/68.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/70.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/75.jpg"></div></div>
@@ -305,6 +356,7 @@
         </div>
     </section>
 
+    <!-- A級平織布 -->
     <section id="section-1">
         <div class="section-header">
             <h2><span class="number">2.</span>A級平織布（格子 / 條紋 / 素面）</h2>
@@ -318,10 +370,14 @@
             <div class="info-row"><span class="label">特色</span><span class="value">抗皺、吸濕排汗、涼感、舒適透氣</span></div>
             <div class="info-row"><span class="label">用途</span><span class="value">襯衫、洋裝、睡衣等</span></div>
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠製造</span></div>
+            <div class="info-row" style="border-top: 1px dashed #eee; padding-top: 8px; margin-top: 4px; border-bottom: none;">
+                <span class="label" style="color: #d9534f;">※ 備註</span>
+                <span class="value" style="font-size: 13px; color: #666;">蝦皮賣場因含平台手續費，單價較高。私訊下單可享此優惠價。</span>
+            </div>
         </div>
 
         <div class="fabric-grid">
-	    <div class="fabric-item"><div class="image-box"><img src="img/01.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/01.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/02.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/03.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/04.JPG"></div></div>
@@ -333,7 +389,7 @@
             <div class="fabric-item"><div class="image-box"><img src="img/11.JPG"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/12.JPG"></div></div>
             <div class="fabric-item" id="stripe-fabric"><div class="image-box"><img src="img/13.jpg"></div></div>
-	    <div class="fabric-item"><div class="image-box"><img src="img/22.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/22.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/14.JPG"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/15.JPG"></div></div>
             <div class="fabric-item" id="plain-fabric"><div class="image-box"><img src="img/16.JPG"></div></div>
@@ -341,8 +397,7 @@
             <div class="fabric-item"><div class="image-box"><img src="img/18.JPG"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/20.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/23.jpg"></div></div>
-			<div class="fabric-item"><div class="image-box"><img src="img/28.jpg"></div></div>
-            
+            <div class="fabric-item"><div class="image-box"><img src="img/28.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/109.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/110.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/115.jpg"></div></div>
@@ -358,6 +413,7 @@
         </div>
     </section>
 
+    <!-- 四面彈防潑水 -->
     <section id="section-2">
         <div class="section-header"><h2><span class="number">3.</span>四面彈防潑水機能布</h2><div class="line"></div></div>
         <div class="category-info">
@@ -369,13 +425,18 @@
             <div class="info-row"><span class="label">重量</span><span class="value">每碼 230 公克</span></div>
             <div class="info-row"><span class="label">用途</span><span class="value">外套、上衣、長短褲、登山褲等服飾</span></div>
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠（上市公司），品質保證！</span></div>
+            <div class="info-row" style="border-top: 1px dashed #eee; padding-top: 8px; margin-top: 4px; border-bottom: none;">
+                <span class="label" style="color: #d9534f;">※ 備註</span>
+                <span class="value" style="font-size: 13px; color: #666;">蝦皮賣場因含平台手續費，單價較高。私訊下單可享此優惠價。</span>
+            </div>
         </div>
         <div class="fabric-grid">
-			<div class="fabric-item"><div class="image-box"><img src="img/24.jpg"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/24.jpg"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/21.jpg"></div></div>
         </div>
     </section>
 
+    <!-- 聚酯羊毛機能布 -->
     <section id="section-3">
         <div class="section-header"><h2><span class="number">4.</span>聚酯羊毛機能布</h2><div class="line"></div></div>
         <div class="category-info">
@@ -387,6 +448,10 @@
             <div class="info-row"><span class="label">重量</span><span class="value">每碼 255 公克</span></div>
             <div class="info-row"><span class="label">用途</span><span class="value">上衣、外套、長短褲等各式服飾</span></div>
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠（上市公司），品質保證！</span></div>
+            <div class="info-row" style="border-top: 1px dashed #eee; padding-top: 8px; margin-top: 4px; border-bottom: none;">
+                <span class="label" style="color: #d9534f;">※ 備註</span>
+                <span class="value" style="font-size: 13px; color: #666;">蝦皮賣場因含平台手續費，單價較高。私訊下單可享此優惠價。</span>
+            </div>
         </div>
         <div class="fabric-grid">
             <div class="fabric-item"><div class="image-box"><img src="img/25.jpg"></div></div>
@@ -394,6 +459,7 @@
         </div>
     </section>
 
+    <!-- TC布 -->
     <section id="section-4">
         <div class="section-header"><h2><span class="number">5.</span>TC布</h2><div class="line"></div></div>
         <div class="category-info">
@@ -404,12 +470,17 @@
             <div class="info-row"><span class="label">幅寬</span><span class="value">約 132 公分</span></div>
             <div class="info-row"><span class="label">用途</span><span class="value">襯衫、洋裝、睡衣等</span></div>
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠製造</span></div>
+            <div class="info-row" style="border-top: 1px dashed #eee; padding-top: 8px; margin-top: 4px; border-bottom: none;">
+                <span class="label" style="color: #d9534f;">※ 備註</span>
+                <span class="value" style="font-size: 13px; color: #666;">蝦皮賣場因含平台手續費，單價較高。私訊下單可享此優惠價。</span>
+            </div>
         </div>
         <div class="fabric-grid">
             <div class="fabric-item"><div class="image-box"><img src="img/31.jpg"></div></div>
         </div>
     </section>
 
+    <!-- 無彈尼龍 -->
     <section id="section-5">
         <div class="section-header"> <h2><span class="number">6.</span> 無彈尼龍 (包包)</h2><div class="line"></div></div>
         <div class="category-info">
@@ -420,6 +491,10 @@
             <div class="info-row"><span class="label">幅寬</span><span class="value">約 132 公分</span></div>
             <div class="info-row"><span class="label">用途</span><span class="value">襯衫、洋裝、睡衣、包包等</span></div>
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠製造</span></div>
+            <div class="info-row" style="border-top: 1px dashed #eee; padding-top: 8px; margin-top: 4px; border-bottom: none;">
+                <span class="label" style="color: #d9534f;">※ 備註</span>
+                <span class="value" style="font-size: 13px; color: #666;">蝦皮賣場因含平台手續費，單價較高。私訊下單可享此優惠價。</span>
+            </div>
         </div>
         <div class="fabric-grid">
             <div class="fabric-item"><div class="image-box"><img src="img/35.jpg"></div></div>
@@ -429,8 +504,17 @@
 
 <footer>
     <div style="text-align: center; padding: 40px 20px; background: #fff; border-top: 1px solid #eee;">
-        <p style="color: #666; margin-bottom: 15px;">對布料有任何疑問嗎？歡迎直接私訊聯絡！</p>
-        <a href="http://facebook.com/cloth9713?" target="_blank" style="display: inline-block; color: var(--accent-color); text-decoration: none; padding: 10px 25px; border: 1.5px solid var(--accent-color); border-radius: 4px; font-weight: 600; transition: var(--transition);">立即私訊聯絡</a>
+        <p style="color: #666; margin-bottom: 20px;">對布料有任何疑問，或想享有最優惠價格？歡迎直接私訊聯絡！</p>
+        
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="http://facebook.com/cloth9713" target="_blank" class="btn-base primary-btn footer-btn">
+                💬 FB私訊洽詢（價格優惠）
+            </a>
+            <a href="https://s.shopee.tw/3qjsg00zuj" target="_blank" class="btn-base secondary-btn footer-btn">
+                🛒 蝦皮賣場（含平台費）
+            </a>
+        </div>
+        
         <p style="color: #999; font-size: 13px; margin-top: 30px;">&copy; 2026 布料供應商 | 台灣大廠布料供應</p>
     </div>
 </footer>
