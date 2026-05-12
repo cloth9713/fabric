@@ -78,7 +78,7 @@
         /* 按鈕群組的容器 */
         .header-actions {
             display: flex;
-            flex-direction: row; /* 按鈕永遠同一排 */
+            flex-direction: row; /* 電腦版按鈕永遠同一排 */
             align-items: center;
             gap: 10px; 
         }
@@ -255,44 +255,41 @@
         }
 
         /* ==========================================================================
-           📱 手機版極致空間優化 - 根據您的圖片進行改量
+           📱 手機版極致空間優化 
            ========================================================================== */
         @media (max-width: 768px) {
-            :root { --header-height: 120px; } /* 減小滾動填充 */
+            :root { --header-height: 155px; } /* 自動調整捲動高度 */
             
             .fabric-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             
-            /* 將標題與按鈕緊湊排列，靠左一些，並排 */
+            /* 將標題獨立一排，按鈕往下放 */
             .title-container { 
-                flex-direction: row; /* 標題與按鈕群組同一排 */
-                justify-content: space-between; /* 左標題，右按鈕塊 */
-                align-items: center; /* 垂直居中 */
-                gap: 10px; /* 標題和按鈕塊之間的間距 */
-                padding: 8px 12px; /* 砍掉多餘的 padding，保留一些 */
+                flex-direction: column; /* 上下兩排排列 */
+                justify-content: center;
+                align-items: center; /* 標題置中，若想靠左可改為 flex-start */
+                gap: 12px; /* 標題與下方按鈕的間隔 */
+                padding: 10px 15px 5px 15px; 
             }
 
             header h1 { 
-                font-size: 18px; /* 縮小字體以適應同一行 */
-                letter-spacing: 1px; /* 減少字距 */
-                margin: 0; /* 確保沒有邊距將其推離左側 */
-                text-align: left; /* 明確靠左 */
-                white-space: nowrap; /* 確保標題不換行 */
+                font-size: 22px; 
+                letter-spacing: 2px;
+                margin: 0;
+                text-align: center;
             }
 
             .header-actions {
-                width: auto; /* 從 100% 改為 auto，讓其居右 */
-                justify-content: flex-end; /* 按鈕群內部靠右對齊 */
-                gap: 4px; /* 按鈕之間的間距不要太大 */
-                flex-shrink: 0; /* 確保按鈕群不會被壓縮到太小 */
+                width: 100%;
+                flex-direction: row; /* 兩個按鈕同一排 */
+                justify-content: space-between; 
+                gap: 8px; /* 兩個按鈕之間的間隔 */
             }
 
             .btn-base {
-                flex: none; /* 移除 flex: 1，讓按鈕回歸自然大小 */
-                width: auto; 
+                flex: 1; /* 兩個按鈕平分 100% 的寬度，各佔一半 */
                 justify-content: center;
-                font-size: 11px; /* 縮小字體確保塞入手機畫面 */
-                padding: 4px 8px; /* 縮小按鈕 padding */
-                border-radius: 3px; /* 稍微減小半徑 */
+                font-size: 12px; /* 字體微調以塞入一行 */
+                padding: 8px 0; /* 加大上下點擊範圍，左右由 flex: 1 自動撐開 */
             }
             
             /* 導覽列縮減高度 */
@@ -311,10 +308,10 @@
 
 <header id="site-header">
     <div class="title-container">
-        <!-- 標題：靠左一些 -->
+        <!-- 第一排：標題獨立 -->
         <h1>布料供應商</h1>
         
-        <!-- 按鈕區塊：手機上在標題旁邊，並排 -->
+        <!-- 第二排：按鈕區塊 (兩個按鈕同一排，平分寬度) -->
         <div class="header-actions">
             <a href="http://facebook.com/cloth9713?" target="_blank" class="btn-base primary-btn">
                 💬 FB洽詢(優惠)
@@ -325,7 +322,7 @@
         </div>
     </div>
     
-    <!-- 導覽列維持原本的分類排版 (不使用橫向滑動) -->
+    <!-- 導覽列維持原本的分類排版 -->
     <nav>
         <a href="#section-crinkle">皺皺布系列</a>
         <a href="#section-1">格子系列</a>
