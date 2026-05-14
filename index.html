@@ -225,7 +225,17 @@
         }
 
         .info-row:last-child { border-bottom: none; }
-        .info-row .label { min-width: 75px; color: var(--text-muted); font-weight: 600; margin-right: 12px; font-size: 14px; }
+        
+        /* ✅ 縮小了標籤的寬度與右邊距，讓間格變小 */
+        .info-row .label { 
+            min-width: 60px; 
+            color: var(--text-muted); 
+            font-weight: 600; 
+            margin-right: 8px; 
+            font-size: 14px; 
+            white-space: nowrap; 
+        }
+        
         .info-row .value { color: var(--text-main); flex: 1; }
         .info-row .price { color: var(--price-color); font-weight: 700; }
         .info-row .promo { color: var(--promo-color); font-weight: 600; }
@@ -320,7 +330,7 @@
         }
 
         /* ==========================================================================
-           📱 手機版 (大幅縮減間距以顯示更多下方圖片)
+           📱 手機版
            ========================================================================== */
         @media (max-width: 768px) {
             :root { --header-height: 160px; }
@@ -365,20 +375,24 @@
             .about-headline { font-size: 15px; }
             .about-tagline { font-size: 13px; }
 
-            /* ✅ 針對手機版大幅縮小標題與資訊框間距 */
-            section { margin-bottom: 35px; } /* 整個大區塊底部的距離縮小 */
-            .section-header { margin-bottom: 8px; } /* 縮小標題與下方資訊卡的距離 */
+            section { margin-bottom: 35px; } 
+            .section-header { margin-bottom: 8px; } 
             
             .category-info { 
-                padding: 10px 15px; /* 縮小資訊卡內距 */
-                margin-bottom: 12px; /* 縮小資訊卡與下方圖片的距離 */
+                padding: 10px 15px; 
+                margin-bottom: 12px; 
             }
             
             .info-row { 
                 font-size: 14px; 
-                padding: 4px 0; /* 縮小資訊卡內每一行的行距 */
+                padding: 4px 0; 
             }
-            .info-row .label { min-width: 65px; margin-right: 8px; }
+            
+            /* ✅ 針對手機版進一步縮小間格，剛好容納四個字 */
+            .info-row .label { 
+                min-width: 56px; 
+                margin-right: 6px; 
+            }
         }
     </style>
 </head>
