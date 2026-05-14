@@ -275,62 +275,11 @@
             color: var(--text-muted);
             font-size: 15px;
             line-height: 1.8;
-            margin: 0 0 4px 0;
+            margin: 0 0 12px 0;
         }
 
         .about-tagline strong {
             color: var(--text-main);
-        }
-
-        /* 展開/收合 */
-        .about-detail {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, opacity 0.4s ease;
-            opacity: 0;
-        }
-
-        .about-detail.open {
-            max-height: 400px;
-            opacity: 1;
-        }
-
-        .about-detail-inner {
-            padding-top: 12px;
-            color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.9;
-            max-width: 800px;
-        }
-
-        .about-toggle-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 8px;
-            background: none;
-            border: none;
-            color: var(--accent-color);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 0;
-            font-family: inherit;
-            transition: var(--transition);
-        }
-
-        .about-toggle-btn:hover {
-            color: #a88757;
-        }
-
-        .about-toggle-btn .arrow {
-            display: inline-block;
-            transition: transform 0.3s ease;
-            font-size: 12px;
-        }
-
-        .about-toggle-btn.open .arrow {
-            transform: rotate(180deg);
         }
 
         /* ==========================================================================
@@ -445,21 +394,6 @@
     <section class="about-section">
         <h2 class="about-headline">台灣布料批發・上市大廠製造・無中間商</h2>
         <p class="about-tagline"><strong>現貨布料十幾萬碼！提供零碼、少量與大量採購</strong></p>
-
-        <button class="about-toggle-btn" id="aboutToggleBtn" onclick="toggleAbout()">
-            顯示更多關於我們 <span class="arrow">▼</span>
-        </button>
-
-        <div class="about-detail" id="aboutDetail">
-            <div class="about-detail-inner">
-                我們提供<strong>台灣大廠製造現貨布料</strong>，包含<strong>皺皺布（泡泡布）</strong>、
-                <strong>四面彈防潑水機能布</strong>、<strong>A級平織布（格子／條紋／素面）</strong>、
-                <strong>聚酯羊毛布</strong>、<strong>TC布</strong>、<strong>無彈尼龍</strong>等多種材質。
-                適合製作洋裝、睡衣、襯衫、外套、長短褲、包包等各式服飾。
-                支援<strong>布料零售與批發</strong>，10碼以上享折扣優惠，可混搭計算。
-                歡迎 FB 私訊詢價，享受最優惠價格！
-            </div>
-        </div>
     </section>
 
     <!-- 皺皺布系列 -->
@@ -663,18 +597,6 @@
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeLightbox();
     });
-
-    function toggleAbout() {
-        const detail = document.getElementById('aboutDetail');
-        const btn = document.getElementById('aboutToggleBtn');
-        const isOpen = detail.classList.contains('open');
-
-        detail.classList.toggle('open');
-        btn.classList.toggle('open');
-        btn.innerHTML = isOpen
-            ? '顯示更多關於我們 <span class="arrow">▼</span>'
-            : '收起 <span class="arrow">▼</span>';
-    }
 </script>
 </body>
 </html>
