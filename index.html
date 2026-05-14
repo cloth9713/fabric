@@ -263,8 +263,8 @@
             border: 1px solid #ebdccc;
             border-radius: 8px;
             padding: 15px 20px;
-            margin: 5px 0 35px 0; /* 大幅縮減與上下的間距 */
-            text-align: center;   /* 改為置中對齊，視覺更平衡 */
+            margin: 5px 0 35px 0;
+            text-align: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
 
@@ -277,7 +277,7 @@
         }
 
         .about-tagline {
-            color: var(--price-color); /* 使用醒目的紅色 */
+            color: var(--price-color);
             font-size: 14px;
             margin: 0;
         }
@@ -320,7 +320,7 @@
         }
 
         /* ==========================================================================
-           📱 手機版
+           📱 手機版 (大幅縮減間距以顯示更多下方圖片)
            ========================================================================== */
         @media (max-width: 768px) {
             :root { --header-height: 160px; }
@@ -365,7 +365,19 @@
             .about-headline { font-size: 15px; }
             .about-tagline { font-size: 13px; }
 
-            .info-row { font-size: 14px; }
+            /* ✅ 針對手機版大幅縮小標題與資訊框間距 */
+            section { margin-bottom: 35px; } /* 整個大區塊底部的距離縮小 */
+            .section-header { margin-bottom: 8px; } /* 縮小標題與下方資訊卡的距離 */
+            
+            .category-info { 
+                padding: 10px 15px; /* 縮小資訊卡內距 */
+                margin-bottom: 12px; /* 縮小資訊卡與下方圖片的距離 */
+            }
+            
+            .info-row { 
+                font-size: 14px; 
+                padding: 4px 0; /* 縮小資訊卡內每一行的行距 */
+            }
             .info-row .label { min-width: 65px; margin-right: 8px; }
         }
     </style>
@@ -563,7 +575,7 @@
         </div>
 
         <p style="color: var(--price-color); font-size: 15px; margin-top: 25px; font-weight: bold;">
-            📢 FB 私訊買最便宜！蝦皮因平台抽成，定價較高。
+            📢 FB 私訊買最便宜！蝦皮賣場因平台抽成，定價較高。
         </p>
 
         <p style="color: #bbb; font-size: 13px; margin-top: 30px;">&copy; 2026 布料供應商 | 台灣大廠布料供應</p>
