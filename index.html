@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ✅ SEO 核心三件組 -->
     <title>布料批發供應商｜台灣製皺皺布、四面彈、防潑水、平織布現貨 | cloth9713.com</title>
     <meta name="description" content="台灣布料批發供應商，提供皺皺布、四面彈防潑水機能布、A級平織布、聚酯羊毛布、TC布、無彈尼龍等現貨布料。適合洋裝、襯衫、外套、包包等製作，支援零售與布料批發，FB私訊享最優惠價格。">
     <meta name="keywords" content="台灣布料,布料批發,布料供應商,現貨布料,皺皺布,泡泡布,四面彈布料,防潑水布料,平織布,羊毛布,聚酯羊毛布,尼龍布,TC布,涼感布料,機能布料,洋裝布料,襯衫布料,外套布料,包包布料,台灣製布料">
 
-    <!-- ✅ Canonical（告訴 Google 正式網址） -->
     <link rel="canonical" href="https://www.cloth9713.com/">
 
-    <!-- ✅ Open Graph（FB / LINE 分享預覽） -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="布料批發供應商｜台灣製現貨布料">
     <meta property="og:description" content="台灣製皺皺布、四面彈防潑水、平織布、聚酯羊毛布等現貨布料批發，FB私訊享最優惠價格！">
@@ -20,7 +17,6 @@
     <meta property="og:image" content="https://www.cloth9713.com/img/og-preview.webp">
     <meta property="og:locale" content="zh_TW">
 
-    <!-- ✅ Schema.org 結構化資料（讓 Google 知道你是布料商店） -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -47,7 +43,6 @@
     }
     </script>
 
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KM9B1S7W12"></script>
     <script>
          window.dataLayer = window.dataLayer || [];
@@ -57,9 +52,6 @@
     </script>
 
     <style>
-        /* ==========================================================================
-           1. 全域變數與基礎設定
-           ========================================================================== */
         :root {
             --primary-color: #0a2f57;
             --accent-color: #c09d6c;
@@ -87,9 +79,6 @@
             line-height: 1.7;
         }
 
-        /* ==========================================================================
-           2. 標頭 (Header)
-           ========================================================================== */
         header {
             background-color: #fff;
             padding: 5px 0 0 0;
@@ -196,9 +185,6 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        /* ==========================================================================
-           3. 內容排版
-           ========================================================================== */
         main { max-width: 1400px; margin: 15px auto; padding: 0 20px; }
         section { margin-bottom: 50px; }
 
@@ -264,9 +250,6 @@
         .image-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
         .fabric-item:hover img { transform: scale(1.05); }
 
-        /* ==========================================================================
-           關於我們區塊 (優化為橫幅樣式)
-           ========================================================================== */
         .about-section {
             background: #fdfbf7;
             border: 1px solid #ebdccc;
@@ -291,9 +274,6 @@
             margin: 0;
         }
 
-        /* ==========================================================================
-           4. 頁尾與燈箱工具
-           ========================================================================== */
         .lightbox {
             display: none;
             position: fixed;
@@ -328,36 +308,72 @@
             z-index: 2100;
         }
 
-        /* ==========================================================================
-           5. 懸浮客服按鈕 (Floating Button) - 已經改為 LINE 綠色
-           ========================================================================== */
-        .floating-btn {
+        /* =============================================
+           懸浮 LINE 按鈕 — 膠囊文字款
+           ============================================= */
+        .floating-line-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             background-color: #00B900;
             color: #fff;
+            text-decoration: none;
+            padding: 12px 18px 12px 14px;
+            border-radius: 50px;
+            box-shadow: 0 4px 16px rgba(0, 185, 0, 0.40);
+            transition: all 0.25s ease;
+            font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .floating-line-btn:hover {
+            background-color: #009900;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 153, 0, 0.50);
+        }
+
+        .floating-line-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* LINE 官方 logo SVG 包在這裡 */
+        .floating-line-btn .line-icon {
+            width: 28px;
+            height: 28px;
+            background: #fff;
             border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 999;
-            transition: var(--transition);
-            text-decoration: none;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
-        .floating-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            background-color: #009900;
+        .floating-line-btn .line-icon svg {
+            width: 18px;
+            height: 18px;
         }
 
-        /* ==========================================================================
-           📱 手機版
-           ========================================================================== */
+        .floating-line-btn .line-label {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .floating-line-btn .line-label .line-sub {
+            font-size: 11px;
+            font-weight: 400;
+            opacity: 0.88;
+            letter-spacing: 0;
+        }
+
+        /* 手機版微調 */
         @media (max-width: 768px) {
             :root { --header-height: 160px; }
 
@@ -393,7 +409,6 @@
             }
             nav a { font-size: 12px; padding: 4px 10px; }
 
-            /* 手機版橫幅間距微調 */
             .about-section {
                 margin: 0 0 25px 0;
                 padding: 12px 10px;
@@ -419,16 +434,27 @@
                 margin-right: 6px; 
             }
 
-            /* 手機版懸浮按鈕調整大小與邊距 */
-            .floating-btn {
+            /* 手機版按鈕：縮小 padding 但保留文字 */
+            .floating-line-btn {
                 bottom: 20px;
-                right: 20px;
-                width: 54px;
-                height: 54px;
+                right: 16px;
+                padding: 10px 14px 10px 11px;
+                font-size: 14px;
+                gap: 7px;
             }
-            .floating-btn svg {
-                width: 28px;
-                height: 28px;
+
+            .floating-line-btn .line-icon {
+                width: 24px;
+                height: 24px;
+            }
+
+            .floating-line-btn .line-icon svg {
+                width: 15px;
+                height: 15px;
+            }
+
+            .floating-line-btn .line-sub {
+                font-size: 10px !important;
             }
         }
     </style>
@@ -461,7 +487,6 @@
 
 <main>
 
-    <!-- 關於我們區塊 (優化為賣場公告橫幅) -->
     <div class="about-section">
         <h2 class="about-headline">台灣布料批發・上市大廠製造・無中間商</h2>
         <p class="about-tagline"><strong>現貨布料十幾萬碼！提供零碼、少量與大量採購</strong></p>
@@ -633,11 +658,19 @@
     </div>
 </footer>
 
-<!-- ✅ 新增的懸浮客服按鈕 (改為 LINE) -->
-<a href="https://lin.ee/vNxTAzi" target="_blank" class="floating-btn" title="LINE客服詢問">
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="#fff">
-        <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992z"/>
-    </svg>
+<!-- ✅ 懸浮 LINE 按鈕（膠囊文字款） -->
+<a href="https://lin.ee/vNxTAzi" target="_blank" class="floating-line-btn" title="LINE客服詢問">
+    <!-- 白底圓形 LINE logo -->
+    <span class="line-icon">
+        <svg viewBox="0 0 24 24" fill="#00B900" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992z"/>
+        </svg>
+    </span>
+    <!-- 文字區塊 -->
+    <span class="line-label">
+        <span>LINE 詢問</span>
+        <span class="line-sub">點我馬上詢價</span>
+    </span>
 </a>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
