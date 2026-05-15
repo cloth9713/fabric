@@ -52,6 +52,9 @@
     </script>
 
     <style>
+        /* ==========================================================================
+           1. 全域變數與基礎設定
+           ========================================================================== */
         :root {
             --primary-color: #0a2f57;
             --accent-color: #c09d6c;
@@ -79,6 +82,9 @@
             line-height: 1.7;
         }
 
+        /* ==========================================================================
+           2. 標頭 (Header)
+           ========================================================================== */
         header {
             background-color: #fff;
             padding: 5px 0 0 0;
@@ -185,6 +191,9 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
+        /* ==========================================================================
+           3. 內容排版
+           ========================================================================== */
         main { max-width: 1400px; margin: 15px auto; padding: 0 20px; }
         section { margin-bottom: 50px; }
 
@@ -250,6 +259,9 @@
         .image-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
         .fabric-item:hover img { transform: scale(1.05); }
 
+        /* ==========================================================================
+           關於我們區塊
+           ========================================================================== */
         .about-section {
             background: #fdfbf7;
             border: 1px solid #ebdccc;
@@ -274,6 +286,9 @@
             margin: 0;
         }
 
+        /* ==========================================================================
+           4. 頁尾與燈箱工具
+           ========================================================================== */
         .lightbox {
             display: none;
             position: fixed;
@@ -308,72 +323,67 @@
             z-index: 2100;
         }
 
-        /* =============================================
-           懸浮 LINE 按鈕 — 膠囊文字款
-           ============================================= */
+        /* ==========================================================================
+           5. ✅ 懸浮 LINE 按鈕 — 圓形上下兩行款 (圖示在上、文字在下)
+           ========================================================================== */
         .floating-line-btn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 24px;
+            right: 20px;
             z-index: 999;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: 3px;
+            width: 54px;
+            height: 54px;
             background-color: #00B900;
-            color: #fff;
-            text-decoration: none;
-            padding: 12px 18px 12px 14px;
-            border-radius: 50px;
-            box-shadow: 0 4px 16px rgba(0, 185, 0, 0.40);
+            border-radius: 50%;
+            box-shadow: 0 3px 12px rgba(0, 185, 0, 0.45);
             transition: all 0.25s ease;
-            font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
+            text-decoration: none;
         }
 
         .floating-line-btn:hover {
             background-color: #009900;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 153, 0, 0.50);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 153, 0, 0.55);
         }
 
-        .floating-line-btn:active {
-            transform: translateY(-1px);
-        }
-
-        /* LINE 官方 logo SVG 包在這裡 */
         .floating-line-btn .line-icon {
-            width: 28px;
-            height: 28px;
-            background: #fff;
-            border-radius: 50%;
+            width: 22px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
         }
 
         .floating-line-btn .line-icon svg {
-            width: 18px;
-            height: 18px;
+            width: 22px;
+            height: 22px;
         }
 
         .floating-line-btn .line-label {
             display: flex;
             flex-direction: column;
-            line-height: 1.2;
+            align-items: center;
         }
 
-        .floating-line-btn .line-label .line-sub {
-            font-size: 11px;
-            font-weight: 400;
-            opacity: 0.88;
-            letter-spacing: 0;
+        .floating-line-btn .line-label span:first-child {
+            font-size: 10px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+            line-height: 1;
         }
 
-        /* 手機版微調 */
+        /* 隱藏副標 */
+        .floating-line-btn .line-label .line-sub { display: none; }
+
+        /* ==========================================================================
+           📱 手機版
+           ========================================================================== */
         @media (max-width: 768px) {
             :root { --header-height: 160px; }
 
@@ -434,27 +444,12 @@
                 margin-right: 6px; 
             }
 
-            /* 手機版按鈕：縮小 padding 但保留文字 */
+            /* 手機版懸浮按鈕調整 */
             .floating-line-btn {
-                bottom: 20px;
-                right: 16px;
-                padding: 10px 14px 10px 11px;
-                font-size: 14px;
-                gap: 7px;
-            }
-
-            .floating-line-btn .line-icon {
-                width: 24px;
-                height: 24px;
-            }
-
-            .floating-line-btn .line-icon svg {
-                width: 15px;
-                height: 15px;
-            }
-
-            .floating-line-btn .line-sub {
-                font-size: 10px !important;
+                bottom: 16px;
+                right: 14px;
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
@@ -492,7 +487,6 @@
         <p class="about-tagline"><strong>現貨布料十幾萬碼！提供零碼、少量與大量採購</strong></p>
     </div>
 
-    <!-- 皺皺布系列 -->
     <section id="section-crinkle">
         <div class="section-header"><h2><span class="number">1.</span>皺皺布系列</h2><div class="line"></div></div>
         <div class="category-info">
@@ -504,17 +498,16 @@
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠製造</span></div>
         </div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/60.webp" loading="lazy" alt="皺皺布 泡泡布 現貨 台灣製布料批發"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/65.webp" loading="lazy" alt="皺皺布 深色系 台灣布料供應商"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/67.webp" loading="lazy" alt="皺皺布 格紋 台灣現貨布料"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/68.webp" loading="lazy" alt="皺皺布 條紋款 布料批發"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/70.webp" loading="lazy" alt="皺皺布 素色 洋裝睡衣布料"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/75.webp" loading="lazy" alt="皺皺布 棉尼龍混紡 台灣製"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/80.webp" loading="lazy" alt="皺皺布 現貨 布料批發供應商"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/60.webp" loading="lazy" alt="皺皺布 泡泡布"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/65.webp" loading="lazy" alt="皺皺布 深色系"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/67.webp" loading="lazy" alt="皺皺布 格紋"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/68.webp" loading="lazy" alt="皺皺布 條紋款"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/70.webp" loading="lazy" alt="皺皺布 素色"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/75.webp" loading="lazy" alt="皺皺布 棉尼龍混紡"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/80.webp" loading="lazy" alt="皺皺布 現貨"></div></div>
         </div>
     </section>
 
-    <!-- A級平織布 -->
     <section id="section-1">
         <div class="section-header"><h2><span class="number">2.</span>A級平織布（格子 / 條紋 / 素面）</h2><div class="line"></div></div>
         <div class="category-info">
@@ -527,111 +520,65 @@
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠製造</span></div>
         </div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/01.webp" loading="lazy" alt="A級平織格子布 尼龍萊卡 台灣製"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/02.webp" loading="lazy" alt="A級平織格子布 涼感布料批發"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/03.webp" loading="lazy" alt="A級平織布 格子款 台灣現貨"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/04.webp" loading="lazy" alt="平織格子布 抗皺吸濕排汗"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/05.webp" loading="lazy" alt="A級平織布 格紋 布料供應商"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/06.webp" loading="lazy" alt="A級尼龍萊卡格子布 台灣製"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/08.webp" loading="lazy" alt="平織格子布 襯衫洋裝布料"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/09.webp" loading="lazy" alt="A級平織布 台灣大廠製造"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/10.webp" loading="lazy" alt="A級平織格子布 現貨批發"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/11.webp" loading="lazy" alt="平織布 格子系列 涼感透氣"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/12.webp" loading="lazy" alt="A級平織布 格子 布料批發"></div></div>
-            <div class="fabric-item" id="stripe-fabric"><div class="image-box"><img src="img/13.webp" loading="lazy" alt="A級平織條紋布 台灣製現貨"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/22.webp" loading="lazy" alt="平織條紋布 尼龍萊卡 布料批發"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/14.webp" loading="lazy" alt="A級條紋布 襯衫洋裝用料"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/15.webp" loading="lazy" alt="平織條紋布 台灣大廠製造"></div></div>
-            <div class="fabric-item" id="plain-fabric"><div class="image-box"><img src="img/16.webp" loading="lazy" alt="A級平織素面布 台灣製現貨"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/17.webp" loading="lazy" alt="平織素面布 尼龍萊卡 布料批發"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/18.webp" loading="lazy" alt="A級素面平織布 涼感透氣"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/20.webp" loading="lazy" alt="平織素面布 台灣大廠布料"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/23.webp" loading="lazy" alt="A級平織素色布 現貨供應"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/28.webp" loading="lazy" alt="平織布 素面系列 台灣製"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/109.webp" loading="lazy" alt="A級平織布 格子 台灣布料供應"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/110.webp" loading="lazy" alt="A級平織布 條紋 現貨批發"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/115.webp" loading="lazy" alt="平織布 台灣製 布料批發"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/120.webp" loading="lazy" alt="A級尼龍萊卡平織布 現貨"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/125.webp" loading="lazy" alt="平織布 涼感吸濕排汗 台灣製"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/130.webp" loading="lazy" alt="A級平織布 抗皺 布料批發"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/140.webp" loading="lazy" alt="平織布 素面格子 台灣現貨"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/145.webp" loading="lazy" alt="A級平織布 台灣大廠製布料"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/150.webp" loading="lazy" alt="平織布 現貨供應 布料批發"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/155.webp" loading="lazy" alt="A級平織布 尼龍萊卡 現貨"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/160.webp" loading="lazy" alt="平織布 涼感透氣 台灣製造"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/170.webp" loading="lazy" alt="A級平織布 布料供應商 現貨"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/01.webp" loading="lazy" alt="平織格子布"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/02.webp" loading="lazy" alt="平織格子布"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/03.webp" loading="lazy" alt="平織格子布"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/04.webp" loading="lazy" alt="平織格子布"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/05.webp" loading="lazy" alt="平織格子布"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/06.webp" loading="lazy" alt="平織格子布"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/08.webp" loading="lazy" alt="平織格子布"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/13.webp" loading="lazy" alt="平織條紋布"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/16.webp" loading="lazy" alt="平織素面布"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/170.webp" loading="lazy" alt="平織布現貨"></div></div>
         </div>
     </section>
 
-    <!-- 四面彈防潑水 -->
     <section id="section-2">
         <div class="section-header"><h2><span class="number">3.</span>四面彈防潑水機能布</h2><div class="line"></div></div>
         <div class="category-info">
             <div class="info-row"><span class="label">優惠價</span><span class="value price">一碼 80 元</span></div>
-            <div class="info-row"><span class="label">多件優惠</span><span class="value promo">任選10碼以上 78元 / 20碼以上 76元 (全品項可搭配)</span></div>
-            <div class="info-row"><span class="label">特色</span><span class="value">防潑水、透氣、四面彈性</span></div>
             <div class="info-row"><span class="label">成分</span><span class="value">棉 55% + 尼龍 32% + 萊卡 13%</span></div>
-            <div class="info-row"><span class="label">幅寬</span><span class="value">132-138 公分</span></div>
-            <div class="info-row"><span class="label">重量</span><span class="value">每碼 230 公克</span></div>
-            <div class="info-row"><span class="label">用途</span><span class="value">外套、上衣、長短褲、登山褲等服飾</span></div>
-            <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠（上市公司），品質保證！</span></div>
+            <div class="info-row"><span class="label">特色</span><span class="value">防潑水、透氣、四面彈性</span></div>
+            <div class="info-row"><span class="label">產地</span><span class="value">台灣上市大廠品質保證</span></div>
         </div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/24.webp" loading="lazy" alt="四面彈防潑水機能布 登山外套布料台灣製"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/21.webp" loading="lazy" alt="四面彈防潑水布料 台灣大廠現貨批發"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/24.webp" loading="lazy" alt="四面彈防潑水"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/21.webp" loading="lazy" alt="四面彈防潑水"></div></div>
         </div>
     </section>
 
-    <!-- 聚酯羊毛機能布 -->
     <section id="section-3">
         <div class="section-header"><h2><span class="number">4.</span>聚酯羊毛機能布</h2><div class="line"></div></div>
         <div class="category-info">
             <div class="info-row"><span class="label">單價</span><span class="value price">一碼 85 元</span></div>
-            <div class="info-row"><span class="label">優惠</span><span class="value promo">10碼以上 83元 / 20碼以上 80元 (可混搭)</span></div>
             <div class="info-row"><span class="label">成分</span><span class="value">聚酯纖維 54% + 羊毛 34% + 彈性纖維 12%</span></div>
-            <div class="info-row"><span class="label">特色</span><span class="value">防縮羊毛、保暖、舒適</span></div>
-            <div class="info-row"><span class="label">幅寬</span><span class="value">132-140 公分</span></div>
-            <div class="info-row"><span class="label">重量</span><span class="value">每碼 255 公克</span></div>
-            <div class="info-row"><span class="label">用途</span><span class="value">上衣、外套、長短褲等各式服飾</span></div>
-            <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠（上市公司），品質保證！</span></div>
+            <div class="info-row"><span class="label">特色</span><span class="value">防縮羊毛、保暖、舒適、台灣製</span></div>
         </div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/25.webp" loading="lazy" alt="聚酯羊毛機能布 保暖外套布料台灣製"></div></div>
-            <div class="fabric-item"><div class="image-box"><img src="img/26.webp" loading="lazy" alt="聚酯羊毛布 防縮保暖 台灣現貨批發"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/25.webp" loading="lazy" alt="聚酯羊毛"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/26.webp" loading="lazy" alt="聚酯羊毛"></div></div>
         </div>
     </section>
 
-    <!-- TC布 -->
     <section id="section-4">
         <div class="section-header"><h2><span class="number">5.</span>TC布</h2><div class="line"></div></div>
         <div class="category-info">
             <div class="info-row"><span class="label">價格</span><span class="value price">一碼 65 元</span></div>
-            <div class="info-row"><span class="label">優惠</span><span class="value promo">10碼以上 63元 / 20碼以上 60元 (可混搭)</span></div>
-            <div class="info-row"><span class="label">材質</span><span class="value">TC材質</span></div>
-            <div class="info-row"><span class="label">碼重</span><span class="value">200公克</span></div>
-            <div class="info-row"><span class="label">幅寬</span><span class="value">約 132 公分</span></div>
-            <div class="info-row"><span class="label">用途</span><span class="value">襯衫、洋裝、睡衣等</span></div>
-            <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠製造</span></div>
+            <div class="info-row"><span class="label">用途</span><span class="value">襯衫、洋裝、睡衣等，碼重200g</span></div>
         </div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/31.webp" loading="lazy" alt="TC布 台灣製 現貨布料批發供應"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/31.webp" loading="lazy" alt="TC布"></div></div>
         </div>
     </section>
 
-    <!-- 無彈尼龍 -->
     <section id="section-5">
         <div class="section-header"><h2><span class="number">6.</span>無彈尼龍 (包包)</h2><div class="line"></div></div>
         <div class="category-info">
             <div class="info-row"><span class="label">價格</span><span class="value price">一碼 60 元</span></div>
-            <div class="info-row"><span class="label">優惠</span><span class="value promo">10碼以上 58元 / 20碼以上 55元 (可混搭)</span></div>
-            <div class="info-row"><span class="label">材質</span><span class="value">A級尼龍 (無彈)</span></div>
-            <div class="info-row"><span class="label">碼重</span><span class="value">200公克</span></div>
-            <div class="info-row"><span class="label">幅寬</span><span class="value">約 132 公分</span></div>
-            <div class="info-row"><span class="label">用途</span><span class="value">襯衫、洋裝、睡衣、包包等</span></div>
-            <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠製造</span></div>
+            <div class="info-row"><span class="label">用途</span><span class="value">適合製作包包、外套、襯衫等</span></div>
         </div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/35.webp" loading="lazy" alt="無彈尼龍布 A級 包包布料台灣製批發"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/35.webp" loading="lazy" alt="無彈尼龍布"></div></div>
         </div>
     </section>
 
@@ -658,18 +605,14 @@
     </div>
 </footer>
 
-<!-- ✅ 懸浮 LINE 按鈕（膠囊文字款） -->
 <a href="https://lin.ee/vNxTAzi" target="_blank" class="floating-line-btn" title="LINE客服詢問">
-    <!-- 白底圓形 LINE logo -->
     <span class="line-icon">
-        <svg viewBox="0 0 24 24" fill="#00B900" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
             <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992z"/>
         </svg>
     </span>
-    <!-- 文字區塊 -->
     <span class="line-label">
-        <span>LINE 詢問</span>
-        <span class="line-sub">點我馬上詢價</span>
+        <span>LINE</span>
     </span>
 </a>
 
