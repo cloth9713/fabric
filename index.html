@@ -325,6 +325,64 @@
         }
 
         /* ==========================================================================
+           5. ✅ 懸浮 LINE 按鈕 — 圓形上下兩行款 (圖示在上、文字在下)
+           ========================================================================== */
+        .floating-line-btn {
+            position: fixed;
+            bottom: 120px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            width: 54px;
+            height: 54px;
+            background-color: #00B900;
+            border-radius: 50%;
+            box-shadow: 0 3px 12px rgba(0, 185, 0, 0.45);
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+
+        .floating-line-btn:hover {
+            background-color: #009900;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 153, 0, 0.55);
+        }
+
+        .floating-line-btn .line-icon {
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-line-btn .line-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .floating-line-btn .line-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .floating-line-btn .line-label span:first-child {
+            font-size: 10px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+            line-height: 1;
+        }
+
+        /* 隱藏副標 */
+        .floating-line-btn .line-label .line-sub { display: none; }
+
+        /* ==========================================================================
            📱 手機版
            ========================================================================== */
         @media (max-width: 768px) {
@@ -385,6 +443,14 @@
             .info-row .label { 
                 min-width: 56px; 
                 margin-right: 6px; 
+            }
+
+            /* 手機版懸浮按鈕調整 */
+            .floating-line-btn {
+                bottom: 60px;
+                right: 14px;
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
@@ -458,7 +524,7 @@
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠製造</span></div>
         </div>
         <div class="fabric-grid">
-            <div class="fabric-item"><div class="image-box"><img src="img/122.webp" loading="lazy" alt="A級平織格子布 尼 nylon萊卡 台灣製"></div></div>
+            <div class="fabric-item"><div class="image-box"><img src="img/122.webp" loading="lazy" alt="A級平織格子布 尼龍萊卡 台灣製"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/123.webp" loading="lazy" alt="A級平織格子布 涼感布料批發"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/121.webp" loading="lazy" alt="A級平織布 格子款 台灣現貨"></div></div>
             <div class="fabric-item"><div class="image-box"><img src="img/01.webp" loading="lazy" alt="A級平織格子布 尼龍萊卡 台灣製"></div></div>
@@ -508,6 +574,7 @@
             <div class="info-row"><span class="label">重量</span><span class="value">每碼 230 公克</span></div>
             <div class="info-row"><span class="label">用途</span><span class="value">外套、上衣、長短褲、登山褲等服飾</span></div>
             <div class="info-row"><span class="label">產地</span><span class="value">台灣大廠（上市公司），品質保證！</span></div>
+        </div>
         </div>
         <div class="fabric-grid">
             <div class="fabric-item"><div class="image-box"><img src="img/24.webp" loading="lazy" alt="四面彈防潑水"></div></div>
@@ -580,12 +647,23 @@
         </div>
 
         <p style="color: var(--price-color); font-size: 15px; margin-top: 25px; font-weight: bold;">
-            📢 FB私訊買最便宜！蝦皮因平台抽成，定價較高。
+            📢 FB、line買最便宜！蝦皮因平台抽成，定價較高。
         </p>
 
         <p style="color: #bbb; font-size: 13px; margin-top: 30px;">&copy; 2026 布料供應商 | 台灣大廠布料供應</p>
     </div>
 </footer>
+
+<a href="https://lin.ee/vNxTAzi" target="_blank" class="floating-line-btn" title="LINE客服詢問">
+    <span class="line-icon">
+        <svg viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992z"/>
+        </svg>
+    </span>
+    <span class="line-label">
+        <span>LINE</span>
+    </span>
+</a>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <span class="close-btn" onclick="closeLightbox()">&times;</span>
